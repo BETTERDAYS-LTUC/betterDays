@@ -1,4 +1,4 @@
-package com.example.betterDays;
+package com.example.betterDays.Entities;
 
 import javax.persistence.*;
 import java.sql.Date;
