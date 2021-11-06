@@ -14,6 +14,7 @@ public class Patient implements UserDetails{
     private long id;
     private String firstName;
     private String lastName;
+    private String username;
     @Column(unique = true)
     private String email;
     @Column(unique = true)
@@ -21,9 +22,11 @@ public class Patient implements UserDetails{
     private String password;
     private int age;
     private List<String> testResults;
+@ManyToOne
+DoctorEntity doctorEntity;
 
 
-    public Patient(String firstName, String lastName, String email, String nickName, String password, int age) {
+    public Patient(String username,String firstName, String lastName, String email, String nickName, String password, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -124,6 +127,10 @@ public class Patient implements UserDetails{
 
     public void setTestResults(List<String> testResults) {
         this.testResults = testResults;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
