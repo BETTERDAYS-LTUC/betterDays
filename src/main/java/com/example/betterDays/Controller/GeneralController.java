@@ -23,6 +23,10 @@ public class GeneralController {
     @Autowired
     PatientRepository patientRepository;
 
+    @GetMapping("/")
+    public String getHome(){
+        return "index";
+    }
 
     @GetMapping("/signup")
     public String getSignUpPage(){
