@@ -11,82 +11,47 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class Patient implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String firstName;
     private String lastName;
-    private String username;
+
     @Column(unique = true)
-    private String email;
+    private String userName;
     @Column(unique = true)
     private String nickName;
+    @Column(unique = true)
+    private String email;
     private String password;
     private int age;
-    private List<String> testResults;
+//    private List<String> testResults;
 @ManyToOne
 DoctorEntity doctorEntity;
+    public Patient(){}
+    public Patient(String firstName, String lastName, String userName, String nickName, String email, String password, int age) {
 
-
-    public Patient(String username,String firstName, String lastName, String email, String nickName, String password, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.userName = userName;
         this.nickName = nickName;
+        this.email = email;
         this.password = password;
         this.age = age;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
 
     @Override
     public String getUsername() {
-        return nickName;
+        return userName;
     }
 
     @Override
@@ -109,6 +74,54 @@ DoctorEntity doctorEntity;
         return true;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -120,31 +133,21 @@ DoctorEntity doctorEntity;
     public void setAge(int age) {
         this.age = age;
     }
+//
+//    public List<String> getTestResults() {
+//        return testResults;
+//    }
+//
+//    public void setTestResults(List<String> testResults) {
+//        this.testResults = testResults;
+//    }
 
-    public List<String> getTestResults() {
-        return testResults;
+    public DoctorEntity getDoctorEntity() {
+        return doctorEntity;
     }
 
-    public void setTestResults(List<String> testResults) {
-        this.testResults = testResults;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Override
-    public String toString() {
-        return "Patient{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", password=" + password +
-                ", age=" + age +
-                ", testResults=" + testResults +
-                '}';
+    public void setDoctorEntity(DoctorEntity doctorEntity) {
+        this.doctorEntity = doctorEntity;
     }
 }
 
