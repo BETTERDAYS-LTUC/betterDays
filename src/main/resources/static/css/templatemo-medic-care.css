@@ -9,6 +9,9 @@ https://templatemo.com/tm-566-medic-care
 /*---------------------------------------
   CUSTOM PROPERTIES ( VARIABLES )             
 -----------------------------------------*/
+body{
+ background: white;
+}
 :root {
   --white-color:                  #FFFFFF;
   --primary-color:                #247cff;
@@ -45,6 +48,11 @@ body {
 /*---------------------------------------
   TYPOGRAPHY               
 -----------------------------------------*/
+
+#logo{
+  height: 241px;
+  width: 251px;
+}
 
 h2,
 h3,
@@ -914,3 +922,4 @@ strong {
     left: 42px;
   }
 }
+
