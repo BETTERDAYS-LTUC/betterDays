@@ -26,7 +26,9 @@ public class DoctorEntity implements UserDetails {
     //------------------------------patient list------------------------------
     @OneToMany(mappedBy="doctorEntity")
     private List<Patient> patient ;
-
+    @OneToMany(mappedBy="doctor")
+    private List<Booking> bookingList ;
+    //-------------------------------------------------------------------------------
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
       SimpleGrantedAuthority simpleGrantedAuthority=new SimpleGrantedAuthority(authority);
