@@ -49,6 +49,11 @@ body {
   TYPOGRAPHY               
 -----------------------------------------*/
 
+#logo{
+  height: 241px;
+  width: 251px;
+}
+
 h2,
 h3,
 h4,
@@ -917,3 +922,4 @@ strong {
     left: 42px;
   }
 }
+
