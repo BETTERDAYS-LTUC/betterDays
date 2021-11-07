@@ -34,6 +34,7 @@ public class Calendar {
            calendar.bookAppointment(name, date, dur, place);
 //         calendarRepository.save(calendar);
         return new RedirectView("/");
+        
     }
 
 
