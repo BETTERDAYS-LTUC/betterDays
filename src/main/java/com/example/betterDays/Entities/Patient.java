@@ -14,20 +14,22 @@ public class Patient implements UserDetails{
     private long id;
     private String firstName;
     private String lastName;
-    @Column(unique = true)
-    private String email;
+    private String userName;
     @Column(unique = true)
     private String nickName;
+    @Column(unique = true)
+    private String email;
     private String password;
     private int age;
-    private List<String> testResults;
+    private String testResult;
 
 
-    public Patient(String firstName, String lastName, String email, String nickName, String password, int age) {
+    public Patient(String firstName, String lastName, String userName, String nickName, String email, String password, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.userName = userName;
         this.nickName = nickName;
+        this.email = email;
         this.password = password;
         this.age = age;
     }
@@ -118,12 +120,12 @@ public class Patient implements UserDetails{
         this.age = age;
     }
 
-    public List<String> getTestResults() {
-        return testResults;
+    public String getTestResults() {
+        return testResult;
     }
 
-    public void setTestResults(List<String> testResults) {
-        this.testResults = testResults;
+    public void setTestResults(String testResults) {
+        this.testResult = testResults;
     }
 
     @Override
@@ -136,7 +138,7 @@ public class Patient implements UserDetails{
                 ", nickName='" + nickName + '\'' +
                 ", password=" + password +
                 ", age=" + age +
-                ", testResults=" + testResults +
+                ", testResults=" + testResult +
                 '}';
     }
 }
