@@ -1,8 +1,8 @@
 package com.example.betterDays.Entities;
-
-
+//
+//
 import java.time.LocalDateTime;
-
+//
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,14 +23,14 @@ public class Event {
 
     LocalDateTime start;
 
-    LocalDateTime end;
+    LocalDateTime end1 ;
 
     String color;
-
+//
     public Long getId() {
         return id;
     }
-
+//
     public void setId(Long id) {
         this.id = id;
     }
@@ -51,16 +51,16 @@ public class Event {
         this.start = start;
     }
 
-    public LocalDateTime getEnd() {
-        return end;
+    public LocalDateTime getEnd1() {
+        return end1;
     }
 
-    public void setEnd(LocalDateTime end) {
-        this.end = end;
+    public void setEnd1(LocalDateTime end1) {
+        this.end1 = end1;
     }
+
 
     public String getColor() { return color; }
 
     public void setColor(String color) { this.color = color; }
 }
-

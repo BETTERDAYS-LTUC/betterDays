@@ -1,10 +1,14 @@
 package com.example.betterDays.Controller;
 
 
+
+
 import com.example.betterDays.Entities.Event;
 import com.example.betterDays.Repositories.EventRepository;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+//import org.daypilot.demo.html5eventcalendarspring.domain.Event;
+//import org.daypilot.demo.html5eventcalendarspring.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -25,10 +29,11 @@ public class MainController {
         return "Welcome!";
     }
 
+
     @GetMapping("/api/events")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    Iterable<Event> events(@RequestParam("start") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime start, @RequestParam("end") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime end) {
-        return er.findBetween(start, end);
+    Iterable<Event> events(@RequestParam("start") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime start, @RequestParam("end1") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime end1) {
+        return er.findBetween(start, end1);
     }
 
     @PostMapping("/api/events/create")
@@ -38,7 +43,7 @@ public class MainController {
 
         Event e = new Event();
         e.setStart(params.start);
-        e.setEnd(params.end);
+        e.setEnd1(params.end1);
         e.setText(params.text);
 
         er.save(e);
@@ -54,7 +59,7 @@ public class MainController {
         Event e = er.findById(params.id).get();
 
         e.setStart(params.start);
-        e.setEnd(params.end);
+        e.setEnd1(params.end1);
 
         er.save(e);
 
@@ -75,7 +80,7 @@ public class MainController {
 
     public static class EventCreateParams {
         public LocalDateTime start;
-        public LocalDateTime end;
+        public LocalDateTime end1;
         public String text;
         public Long resource;
     }
@@ -83,7 +88,7 @@ public class MainController {
     public static class EventMoveParams {
         public Long id;
         public LocalDateTime start;
-        public LocalDateTime end;
+        public LocalDateTime end1;
         public Long resource;
     }
 
