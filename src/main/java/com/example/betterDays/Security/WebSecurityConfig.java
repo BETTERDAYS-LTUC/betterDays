@@ -1,6 +1,7 @@
 package com.example.betterDays.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -22,6 +23,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder;
     }
+//@Bean
+//public BCryptPasswordEncoder passwordEncoder() {
+//    return new BCryptPasswordEncoder();
+//}
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -36,12 +41,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signup*").permitAll()
                 .antMatchers("/style.css").permitAll()
                 .antMatchers("/").permitAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/signup",true)
+                .defaultSuccessUrl("/")
                 .failureUrl("/login")
                 .and()
                 .logout()

@@ -1,15 +1,21 @@
 package com.example.betterDays.Entities;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.*;
+
 @Entity
-public class DoctorEntity {
+public class DoctorEntity implements UserDetails {
     @Column(unique = true)
     private String username;
     private String password;
     @Column(unique = true)
     private String email;
-
+     private String authority;
 
 
 
@@ -17,31 +23,70 @@ public class DoctorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id ;
+    //------------------------------patient list------------------------------
+    @OneToMany(mappedBy="doctorEntity")
+    private List<Patient> patient ;
 
-//    @OneToMany(mappedBy="Patient")
-//    private List<Patient> patient ;
-
-//    @OneToMany(mappedBy="applicationUser")
-//    private List<Post> posts ;
-
-
-    public DoctorEntity(String password, String email) {
-        this.password = password;
-        this.email = email;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+      SimpleGrantedAuthority simpleGrantedAuthority=new SimpleGrantedAuthority(authority);
+      List<SimpleGrantedAuthority> grantedAuthorities=new ArrayList<SimpleGrantedAuthority>();
+        grantedAuthorities.add(simpleGrantedAuthority);
+        return grantedAuthorities;
+    }
+// -----------------------------------------auth----------------------------------------------
+    @Override
+    public String getPassword() {
+        return password;
     }
 
-
+    @Override
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+//---------------------------------------------------------------------------------
+//    @OneToMany(mappedBy="applicationUser")
+//    private List<Post> posts ;
+
+//------------------------------getter and setter------------------------------------------------
+    public DoctorEntity(String password, String email) {
+        this.password = password;
+        this.email = email;
+        this.authority= "role_doctor";
+    }
+
+
+//    public String getUsername() {
+//        return username;
+//    }
+//
+//    public void setUsername(String username) {
+//        this.username = username;
+//    }
+//
+//    public String getPassword() {
+//        return password;
+//    }
 
     public void setPassword(String password) {
         this.password = password;
@@ -62,4 +107,6 @@ public class DoctorEntity {
     public void setId(int id) {
         this.id = id;
     }
+    //----------------------------------------------------------------------------
+
 }
