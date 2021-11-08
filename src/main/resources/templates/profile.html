@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
+<!--    <link href="css/login.css" rel="stylesheet">-->
 
 </head>
 <body>
@@ -25,6 +26,7 @@
         <ul>
             <li>First Name : <span th:text="${patient.firstName }"></span></li>
             <li>Last Name : <span th:text="${patient.lastName }"></span></li>
+            <li>Email : <span th:text="${patient.email }"></span></li>
             <li>Age : <span th:text="${patient.age }"></span></li>
             <li>Test Result : <span th:text="${patient.testResult }"></span></li>
         </ul>
@@ -45,6 +47,74 @@
 
     </div>
 </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Edit profile
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/updateProfile" method="post">
+                        <div class="field">
+                            <span class="fas fa-user"></span>
+                            <input type="text" name="userName" id="userName" placeholder="User Name"
+                                   th:value="${patient.userName}">
+                            <!-- <label>First Name</label> -->
+                        </div>
+
+                        <div class="field">
+                            <span class="fas fa-user"></span>
+                            <input type="text" name="firstName" id="firstName" placeholder="First Name"
+                                   th:value="${patient.firstName}">
+                            <!-- <label>First Name</label> -->
+                        </div>
+
+                        <div class="field">
+                            <span class="fas fa-user"></span>
+                            <input type="text" name="lastName" id="lastName" placeholder="Last Name"
+                                   th:value="${patient.lastName}">
+                            <!-- <label>Last Name</label> -->
+                        </div>
+                        <div class="field">
+                            <span class="fas fa-user"></span>
+                            <input type="text" name="nickName" id="nickName" placeholder="Nick Name"
+                                   th:value="${patient.nickName}">
+                            <!-- <label>Nick Name</label> -->
+                        </div>
+                        <div class="field">
+                            <span class="fas fa-user"></span>
+                            <input type="email" name="email" id="email" placeholder="Email"
+                                   th:value="${patient.email}">
+                            <!-- <label>email</label> -->
+                        </div>
+
+                        <div class="field">
+                            <span class="fas fa-user"></span>
+                            <input type="number" name="age" id="age" placeholder="Age"
+                                   th:value="${patient.age}">
+                            <!-- <label>First Name</label> -->
+                        </div>
+
+                        <div class="field">
+                            <span class="fas fa-lock"></span>
+                            <input name="password" id="password" placeholder="password"type="password"
+                                   th:value="${patient.password}">
+                            <!-- <label>Password</label> -->
+
+                        </div>
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

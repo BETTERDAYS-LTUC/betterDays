@@ -3,11 +3,11 @@ package com.example.betterDays.Controller;
 import com.example.betterDays.Entities.Patient;
 import com.example.betterDays.Repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
@@ -17,6 +17,9 @@ public class PatientController {
 
     @Autowired
     PatientRepository patientRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
 
 @PostMapping("/testResult")
 public String getSolution(Principal principal, @RequestParam int submit, Model model){
@@ -49,6 +52,31 @@ public String getSolution(Principal principal, @RequestParam int submit, Model m
     public String getPatientProfile(Principal principal, Model model){
         Patient patient = patientRepository.findByUserName(principal.getName());
         model.addAttribute("patient",patient);
+        return "profile";
+    }
+
+    @PostMapping("/updateProfile")
+    public String updateProfile(@RequestParam String firstName,
+                                      @RequestParam String lastName,
+                                      @RequestParam String nickName,
+                                      @RequestParam String userName,
+                                      @RequestParam String email,
+                                      @RequestParam String password,
+                                      @RequestParam int age,Principal principal,
+                                Model model){
+        Patient patientToUpdate = patientRepository.findByUserName(principal.getName());
+
+        patientToUpdate.setFirstName(firstName);
+        patientToUpdate.setLastName(lastName);
+        patientToUpdate.setAge(age);
+        patientToUpdate.setEmail(email);
+        patientToUpdate.setPassword(encoder.encode(password));
+        patientToUpdate.setUserName(userName);
+        patientToUpdate.setNickName(nickName);
+
+        patientRepository.save(patientToUpdate);
+        model.addAttribute("patient",patientToUpdate);
+
         return "profile";
     }
 }
