@@ -23,7 +23,7 @@ public class Patient implements UserDetails{
     private String email;
     private String password;
     private int age;
-//    private List<String> testResults;
+    private String testResult;
 @ManyToOne
 DoctorEntity doctorEntity;
     public Patient(){}
@@ -133,14 +133,14 @@ DoctorEntity doctorEntity;
     public void setAge(int age) {
         this.age = age;
     }
-//
-//    public List<String> getTestResults() {
-//        return testResults;
-//    }
-//
-//    public void setTestResults(List<String> testResults) {
-//        this.testResults = testResults;
-//    }
+
+    public String getTestResult() {
+        return testResult;
+    }
+
+    public void setTestResult(String testResults) {
+        this.testResult = testResult;
+    }
 
     public DoctorEntity getDoctorEntity() {
         return doctorEntity;
