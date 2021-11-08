@@ -26,6 +26,7 @@ public class Patient implements UserDetails{
     private String password;
     private int age;
     private String authority;
+
     private String testResult;
 @ManyToOne
 DoctorEntity doctorEntity;

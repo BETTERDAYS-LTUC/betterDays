@@ -32,11 +32,6 @@ public class GeneralController {
         return "index";
     }
 
-    @GetMapping("/level1")
-    public String getindex(){
-        return "level1";
-    }
-
     @GetMapping("/signup")
     public String getSignUpPage(){
         return "signup";
