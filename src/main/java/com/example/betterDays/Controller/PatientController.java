@@ -3,11 +3,19 @@ package com.example.betterDays.Controller;
 import com.example.betterDays.Entities.Patient;
 import com.example.betterDays.Repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
@@ -18,24 +26,27 @@ public class PatientController {
     @Autowired
     PatientRepository patientRepository;
 
+    @Autowired
+    PasswordEncoder encoder;
+
 @PostMapping("/testResult")
 public String getSolution(Principal principal, @RequestParam int submit, Model model){
     Patient patient = patientRepository.findByUserName(principal.getName());
     if (submit < 3){
-        patient.setTestResult("You are good, keep it healthy");
+        patient.setTestResult("Initiation");
         model.addAttribute("patient", patient);
         return "index";
     }else if (submit == 3){
-        patient.setTestResult("you have a drinking or drug problem.");
+        patient.setTestResult("Experimentation stage");
         return "level3";
     }else if (submit >= 4 && submit < 7){
-        patient.setTestResult("you are in an early stage of alcoholism or drug addiction.");
-        return "level2";
+        patient.setTestResult("Regular Usage");
+        return "level3";
     }else if (submit >= 7 && submit < 10){
-        patient.setTestResult("you are in the second stage of alcoholism or drug addiction.");
+        patient.setTestResult("Risky Usage");
         return "level1";
     }else {
-        patient.setTestResult("you are in the end stage of alcoholism or drug addiction.");
+        patient.setTestResult("Crisis/Treatment ");
         return "level1";
     }
 }
@@ -44,4 +55,36 @@ public String getSolution(Principal principal, @RequestParam int submit, Model m
     public String getTest(){
         return "test";
     }
+
+    @GetMapping("/patientProfile")
+    public String getPatientProfile(Principal principal, Model model){
+        Patient patient = patientRepository.findByUserName(principal.getName());
+        model.addAttribute("patient",patient);
+        return "profile";
+    }
+
+    @PostMapping("/updateProfile")
+    public String updateProfile(@RequestParam String firstName,
+                                      @RequestParam String lastName,
+                                      @RequestParam String nickName,
+                                      @RequestParam String userName,
+                                      @RequestParam String email,
+                                      @RequestParam String password,
+                                      @RequestParam int age,Principal principal,
+                                Model model){
+        Patient patientToUpdate = patientRepository.findByUserName(principal.getName());
+
+        patientToUpdate.setFirstName(firstName);
+        patientToUpdate.setLastName(lastName);
+        patientToUpdate.setAge(age);
+        patientToUpdate.setEmail(email);
+        patientToUpdate.setPassword(encoder.encode(password));
+        patientToUpdate.setUserName(userName);
+        patientToUpdate.setNickName(nickName);
+
+        patientRepository.save(patientToUpdate);
+        model.addAttribute("patient",patientToUpdate);
+
+        return "profile";
+
 }
