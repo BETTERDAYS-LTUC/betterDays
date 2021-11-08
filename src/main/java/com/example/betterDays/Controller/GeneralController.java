@@ -57,4 +57,10 @@ public class GeneralController {
     public String login(){
         return "login";
     }
+
+
+    @GetMapping("/calender")
+    public String getcalender(){
+        return "index1";
+    }
 }
