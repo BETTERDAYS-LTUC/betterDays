@@ -20,3 +20,18 @@ body { font-size: 30px; padding: 0; margin: 0;}
   .scrollHalf__grupo__imagen img {  min-height: 100vh;  min-width: 50vw; }
   .scrollHalf__grupo__contenido { margin: 0 3vw 0 52vw;}
 }
+
+.button{
+    cursor: pointer;
+    margin-left: 46%;
+    border-radius: 5px;
+    border: 5px solid #247CFF;
+
+    font-size: 15px;
+    background-color: #247CFF;
+    color: white;
+    padding: 6px 24px;
+
+
+
+

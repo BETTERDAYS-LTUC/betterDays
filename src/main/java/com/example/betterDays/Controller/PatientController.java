@@ -29,49 +29,49 @@ public class PatientController {
     @Autowired
     PasswordEncoder encoder;
 
-@PostMapping("/testResult")
-public String getSolution(Principal principal, @RequestParam int submit, Model model){
-    Patient patient = patientRepository.findByUserName(principal.getName());
-    if (submit < 3){
-        patient.setTestResult("Initiation");
-        model.addAttribute("patient", patient);
-        return "index";
-    }else if (submit == 3){
-        patient.setTestResult("Experimentation stage");
-        return "level3";
-    }else if (submit >= 4 && submit < 7){
-        patient.setTestResult("Regular Usage");
-        return "level3";
-    }else if (submit >= 7 && submit < 10){
-        patient.setTestResult("Risky Usage");
-        return "level1";
-    }else {
-        patient.setTestResult("Crisis/Treatment ");
-        return "level1";
+    @PostMapping("/testResult")
+    public String getSolution(Principal principal, @RequestParam int submit, Model model) {
+        Patient patient = patientRepository.findByUserName(principal.getName());
+        if (submit < 3) {
+            patient.setTestResult("Initiation");
+            model.addAttribute("patient", patient);
+            return "index";
+        } else if (submit == 3) {
+            patient.setTestResult("Experimentation stage");
+            return "level3";
+        } else if (submit >= 4 && submit < 7) {
+            patient.setTestResult("Regular Usage");
+            return "level3";
+        } else if (submit >= 7 && submit < 10) {
+            patient.setTestResult("Risky Usage");
+            return "level1";
+        } else {
+            patient.setTestResult("Crisis/Treatment ");
+            return "level1";
+        }
     }
-}
 
     @GetMapping("/test")
-    public String getTest(){
+    public String getTest() {
         return "test";
     }
 
     @GetMapping("/patientProfile")
-    public String getPatientProfile(Principal principal, Model model){
+    public String getPatientProfile(Principal principal, Model model) {
         Patient patient = patientRepository.findByUserName(principal.getName());
-        model.addAttribute("patient",patient);
+        model.addAttribute("patient", patient);
         return "profile";
     }
 
     @PostMapping("/updateProfile")
     public String updateProfile(@RequestParam String firstName,
-                                      @RequestParam String lastName,
-                                      @RequestParam String nickName,
-                                      @RequestParam String userName,
-                                      @RequestParam String email,
-                                      @RequestParam String password,
-                                      @RequestParam int age,Principal principal,
-                                Model model){
+                                @RequestParam String lastName,
+                                @RequestParam String nickName,
+                                @RequestParam String userName,
+                                @RequestParam String email,
+                                @RequestParam String password,
+                                @RequestParam int age, Principal principal,
+                                Model model) {
         Patient patientToUpdate = patientRepository.findByUserName(principal.getName());
 
         patientToUpdate.setFirstName(firstName);
@@ -83,8 +83,9 @@ public String getSolution(Principal principal, @RequestParam int submit, Model m
         patientToUpdate.setNickName(nickName);
 
         patientRepository.save(patientToUpdate);
-        model.addAttribute("patient",patientToUpdate);
+        model.addAttribute("patient", patientToUpdate);
 
         return "profile";
 
+    }
 }

@@ -8,9 +8,6 @@
 body{
     width: 100vw;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-family: 'Raleway', sans-serif;
     background-color: rgb(240,240,240);
 }
@@ -24,6 +21,8 @@ body{
     width: 250px;
     padding-bottom: 15px;
     background-color: white;
+    margin:70px auto 0;
+
 }
 
 .card img{
@@ -64,7 +63,7 @@ body{
     align-items: center;
     justify-content: space-between;
     text-align: center;
-    height: 150px;
+    height: 200px;
 }
 
 .card:hover > .link{
@@ -72,3 +71,4 @@ body{
     display: flex;
     justify-content: space-between;
 }
+
