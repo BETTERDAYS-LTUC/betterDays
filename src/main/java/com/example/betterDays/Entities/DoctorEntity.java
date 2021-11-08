@@ -26,6 +26,8 @@ public class DoctorEntity implements UserDetails {
     //------------------------------patient list------------------------------
     @OneToMany(mappedBy="doctorEntity")
     private List<Patient> patient ;
+    @OneToMany(mappedBy="doctor")
+    private List<Event> bookingList ;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -69,9 +71,9 @@ public class DoctorEntity implements UserDetails {
 //    private List<Post> posts ;
 
 //------------------------------getter and setter------------------------------------------------
-    public DoctorEntity(String password, String email) {
+    public DoctorEntity(String username, String password) {
+        this.username = username;
         this.password = password;
-        this.email = email;
         this.authority= "role_doctor";
     }
 
@@ -109,4 +111,23 @@ public class DoctorEntity implements UserDetails {
     }
     //----------------------------------------------------------------------------
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<Patient> getPatient() {
+        return patient;
+    }
+
+    public void setPatient(List<Patient> patient) {
+        this.patient = patient;
+    }
+
+    public List<Event> getBookingList() {
+        return bookingList;
+    }
+
+    public void setBookingList(List<Event> bookingList) {
+        this.bookingList = bookingList;
+    }
 }
