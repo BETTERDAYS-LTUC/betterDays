@@ -27,16 +27,16 @@ public String getSolution(Principal principal, @RequestParam int submit, Model m
         return "index";
     }else if (submit == 3){
         patient.setTestResult("you have a drinking or drug problem.");
-        return "signup";
+        return "level3";
     }else if (submit >= 4 && submit < 7){
         patient.setTestResult("you are in an early stage of alcoholism or drug addiction.");
-        return "signup";
+        return "level3";
     }else if (submit >= 7 && submit < 10){
         patient.setTestResult("you are in the second stage of alcoholism or drug addiction.");
-        return "signup";
+        return "level1";
     }else {
         patient.setTestResult("you are in the end stage of alcoholism or drug addiction.");
-        return "signup";
+        return "level1";
     }
 }
 

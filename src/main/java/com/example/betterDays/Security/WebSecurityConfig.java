@@ -23,10 +23,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder;
     }
-//@Bean
-//public BCryptPasswordEncoder passwordEncoder() {
-//    return new BCryptPasswordEncoder();
-//}
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -39,11 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/signup*").permitAll()
-<<<<<<< HEAD
-//                .antMatchers("/style.css").permitAll()
-=======
-                .antMatchers("/style.css").permitAll()
->>>>>>> 3f2dc62 (addiction survey done)
                 .antMatchers("/css/*").permitAll()
                 .antMatchers("/fonts/*").permitAll()
                 .antMatchers("/images/gallery/*").permitAll()
