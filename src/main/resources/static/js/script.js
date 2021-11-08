@@ -1,4 +1,5 @@
 
+
 let form =document.getElementById("form");
      form.addEventListener('submit',snedReply);
       function snedReply(event){
@@ -12,6 +13,7 @@ let form =document.getElementById("form");
           }
           emailjs.send("service_ngpzqkl","template_1y0xo0k",para);
           document.getElementById('form').reset()
+
      }
 
 
