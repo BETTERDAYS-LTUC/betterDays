@@ -39,6 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/signup*").permitAll()
+                .antMatchers("/doctor*").hasAuthority("role_doctor")
+//                .antMatchers("/doctor*").permitAll()
                 .antMatchers("/css/*").permitAll()
                 .antMatchers("/fonts/*").permitAll()
                 .antMatchers("/images/gallery/*").permitAll()

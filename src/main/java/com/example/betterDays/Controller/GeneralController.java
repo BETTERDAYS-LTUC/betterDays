@@ -1,6 +1,8 @@
 package com.example.betterDays.Controller;
 
+import com.example.betterDays.Entities.DoctorEntity;
 import com.example.betterDays.Entities.Patient;
+import com.example.betterDays.Repositories.DoctorRepository;
 import com.example.betterDays.Repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +24,8 @@ public class GeneralController {
 
     @Autowired
     PatientRepository patientRepository;
+    @Autowired
+    DoctorRepository doctorRepository;
 
     @GetMapping("/")
     public String getHome(){

@@ -1,10 +1,12 @@
 package com.example.betterDays.Entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
@@ -23,9 +25,15 @@ public class Patient implements UserDetails{
     private String email;
     private String password;
     private int age;
+    private String authority;
     private String testResult;
 @ManyToOne
 DoctorEntity doctorEntity;
+    @OneToOne
+    Event booking;
+
+
+
     public Patient(){}
     public Patient(String firstName, String lastName, String userName, String nickName, String email, String password, int age) {
 
@@ -36,12 +44,16 @@ DoctorEntity doctorEntity;
         this.email = email;
         this.password = password;
         this.age = age;
+        this.authority="role_patient";
     }
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        SimpleGrantedAuthority simpleGrantedAuthority=new SimpleGrantedAuthority(authority);
+        List<SimpleGrantedAuthority> grantedAuthorities=new ArrayList<SimpleGrantedAuthority>();
+        grantedAuthorities.add(simpleGrantedAuthority);
+        return grantedAuthorities;
     }
 
     @Override
