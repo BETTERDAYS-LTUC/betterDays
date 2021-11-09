@@ -1,7 +1,9 @@
 package com.example.betterDays.Controller;
 
 import com.example.betterDays.Entities.Patient;
+import com.example.betterDays.Entities.Story;
 import com.example.betterDays.Repositories.PatientRepository;
+import com.example.betterDays.Repositories.StoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +27,9 @@ public class PatientController {
 
     @Autowired
     PatientRepository patientRepository;
+    @Autowired
+    StoryRepo storyRepo;
+
 
     @Autowired
     PasswordEncoder encoder;
@@ -88,4 +93,15 @@ public class PatientController {
         return "profile";
 
     }
+
+    @PostMapping("/addstory")
+    public String addStory(@RequestParam String body,@RequestParam String title  ,Principal p, Model model){
+        Patient patient=patientRepository.findByUsername(p.getName());
+        Story newStory=new Story(patient,body,title);
+        model.addAttribute("storyy",newStory);
+        storyRepo.save(newStory);
+        return "index";
+    }
+
+
 }
