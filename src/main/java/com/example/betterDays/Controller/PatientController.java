@@ -1,17 +1,17 @@
 package com.example.betterDays.Controller;
 
+import com.example.betterDays.Entities.DoctorEntity;
 import com.example.betterDays.Entities.Patient;
+import com.example.betterDays.Repositories.DoctorRepository;
 import com.example.betterDays.Entities.Story;
 import com.example.betterDays.Repositories.PatientRepository;
 import com.example.betterDays.Repositories.StoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +28,10 @@ public class PatientController {
     @Autowired
     PatientRepository patientRepository;
     @Autowired
+
+    DoctorRepository doctorRepository;
     StoryRepo storyRepo;
+
 
 
     @Autowired
@@ -37,21 +40,48 @@ public class PatientController {
     @PostMapping("/testResult")
     public String getSolution(Principal principal, @RequestParam int submit, Model model) {
         Patient patient = patientRepository.findByUsername(principal.getName());
+         String firstName=patient.getFirstName();
+        String lastName=patient.getLastName();
+        String userName=patient.getUserName();
+        String nickName=patient.getNickName();
+        String email=patient.getEmail();
+        String password=patient.getPassword();
+        int age=patient.getAge();
+
         if (submit < 3) {
             patient.setTestResult("Initiation");
-            model.addAttribute("patient", patient);
+            patientRepository.delete(patient);
+            Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Initiation");
+            patientRepository.save(patient0);
+            System.out.println(patient.getTestResult());
             return "index";
         } else if (submit == 3) {
             patient.setTestResult("Experimentation stage");
+            patientRepository.delete(patient);
+            Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Experimentation stage");
+            patientRepository.save(patient0);
+            System.out.println(patient.getTestResult());
             return "level3";
         } else if (submit >= 4 && submit < 7) {
             patient.setTestResult("Regular Usage");
+            patientRepository.delete(patient);
+            Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Regular Usage");
+            patientRepository.save(patient0);
+            System.out.println(patient.getTestResult());
             return "level3";
         } else if (submit >= 7 && submit < 10) {
             patient.setTestResult("Risky Usage");
+            patientRepository.delete(patient);
+            Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Risky Usage");
+            patientRepository.save(patient0);
+            System.out.println(patient.getTestResult());
             return "level1";
         } else {
             patient.setTestResult("Crisis/Treatment ");
+            patientRepository.delete(patient);
+            Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Crisis/Treatment");
+            patientRepository.save(patient0);
+            System.out.println(patient.getTestResult());
             return "level1";
         }
     }
@@ -64,8 +94,16 @@ public class PatientController {
     @GetMapping("/patientProfile")
     public String getPatientProfile(Principal principal, Model model) {
         Patient patient = patientRepository.findByUsername(principal.getName());
-        model.addAttribute("patient", patient);
-        return "profile";
+        DoctorEntity doctor = doctorRepository.findByUsername(principal.getName());
+if(patient!=null) {
+    model.addAttribute("patient", patient);
+    return "profile";
+}else if (doctor!=null){
+    model.addAttribute("patient", doctor);
+    return "doctorpro";
+}else {
+    return "index";
+}
     }
 
     @PostMapping("/updateProfile")
@@ -94,6 +132,20 @@ public class PatientController {
 
     }
 
+    @PostMapping("/addDoctorToBooking/{id}")
+    public RedirectView profile(@PathVariable int id, Model m, Principal principal){
+        DoctorEntity doctor  = doctorRepository.findById(id).get();
+        Patient patient = patientRepository.findByUsername(principal.getName());
+        patient.setDoctorEntity(doctor);
+        doctor.addPatient(patient);
+        patientRepository.save(patient);
+        doctorRepository.save(doctor);
+        return new RedirectView("/calender");
+
+
+    }
+
+
     @PostMapping("/addstory")
     public String addStory(@RequestParam String body,@RequestParam String title  ,Principal p, Model model){
         Patient patient=patientRepository.findByUsername(p.getName());
@@ -102,6 +154,7 @@ public class PatientController {
         storyRepo.save(newStory);
         return "index";
     }
+
 
 
 }

@@ -46,8 +46,29 @@ DoctorEntity doctorEntity;
         this.password = password;
         this.age = age;
         this.authority="role_patient";
+        this.testResult="none";
+    }
+    public Patient(String firstName, String lastName, String userName, String nickName, String email, String password, int age,String testResult) {
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = userName;
+        this.nickName = nickName;
+        this.email = email;
+        this.password = password;
+        this.age = age;
+        this.authority="role_patient";
+        this.testResult=testResult;
+        this.id=id;
     }
 
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
