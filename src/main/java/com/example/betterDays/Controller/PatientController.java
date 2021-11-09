@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -147,12 +144,12 @@ if(patient!=null) {
 
 
     @PostMapping("/addstory")
-    public String addStory(@RequestParam String body,@RequestParam String title  ,Principal p, Model model){
+    public RedirectView addStory(@RequestParam String body, @RequestParam String title  , Principal p, Model model){
         Patient patient=patientRepository.findByUsername(p.getName());
         Story newStory=new Story(patient,body,title);
         model.addAttribute("storyy",newStory);
         storyRepo.save(newStory);
-        return "index";
+        return new RedirectView("/stories");
     }
 
 
