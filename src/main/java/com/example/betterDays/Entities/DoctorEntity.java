@@ -18,7 +18,8 @@ public class DoctorEntity implements UserDetails {
      private String authority;
 
 
-
+    public DoctorEntity() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

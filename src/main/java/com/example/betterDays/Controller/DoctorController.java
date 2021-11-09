@@ -17,16 +17,16 @@ public class DoctorController {
     DoctorRepository doctorRepository;
     @Autowired
     PasswordEncoder encoder;
-@GetMapping("/doctor")
-    public String getDoctor(){
-    return "doctorpro";
-}
 //@GetMapping("/doctor")
-//    public String getDoctorAcc(){
-//    String password="0";
-//    DoctorEntity doctor=new DoctorEntity("k", encoder.encode("0"));
-//    doctorRepository.save(doctor);
+//    public String getDoctor(){
 //    return "doctorpro";
 //}
+@GetMapping("/doctor")
+    public String getDoctorAcc(){
+    String password="0";
+    DoctorEntity doctor=new DoctorEntity("k", encoder.encode("0"));
+    doctorRepository.save(doctor);
+    return "doctorpro";
+}
 
 }
