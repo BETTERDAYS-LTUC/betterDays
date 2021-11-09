@@ -60,6 +60,6 @@ public class GeneralController {
 
     @GetMapping("/calender")
     public String getcalender(){
-        return "index1";
+        return "index";
     }
 }
