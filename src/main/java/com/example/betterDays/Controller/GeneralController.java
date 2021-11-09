@@ -29,6 +29,9 @@ public class GeneralController {
 
     @GetMapping("/")
     public String getHome(){
+//        DoctorEntity doctor=new DoctorEntity("me", encoder.encode("0"));
+//        doctorRepository.save(doctor);
+
         return "index";
     }
 

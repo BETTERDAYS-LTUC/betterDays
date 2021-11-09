@@ -1,6 +1,8 @@
 package com.example.betterDays.Controller;
 
+import com.example.betterDays.Entities.DoctorEntity;
 import com.example.betterDays.Entities.Patient;
+import com.example.betterDays.Repositories.DoctorRepository;
 import com.example.betterDays.Repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,6 +27,8 @@ public class PatientController {
 
     @Autowired
     PatientRepository patientRepository;
+    @Autowired
+    DoctorRepository doctorRepository;
 
     @Autowired
     PasswordEncoder encoder;
@@ -59,8 +63,16 @@ public class PatientController {
     @GetMapping("/patientProfile")
     public String getPatientProfile(Principal principal, Model model) {
         Patient patient = patientRepository.findByUsername(principal.getName());
-        model.addAttribute("patient", patient);
-        return "profile";
+        DoctorEntity doctor = doctorRepository.findByUsername(principal.getName());
+if(patient!=null) {
+    model.addAttribute("patient", patient);
+    return "profile";
+}else if (doctor!=null){
+    model.addAttribute("patient", doctor);
+    return "doctorpro";
+}else {
+    return "index";
+}
     }
 
     @PostMapping("/updateProfile")
@@ -86,6 +98,18 @@ public class PatientController {
         model.addAttribute("patient", patientToUpdate);
 
         return "profile";
+
+    }
+    @PostMapping("/addDoctorToBooking/{id}")
+    public RedirectView profile(@PathVariable int id, Model m, Principal principal){
+        DoctorEntity doctor  = doctorRepository.findById(id).get();
+        Patient patient = patientRepository.findByUsername(principal.getName());
+        patient.setDoctorEntity(doctor);
+        doctor.addPatient(patient);
+        patientRepository.save(patient);
+        doctorRepository.save(doctor);
+        return new RedirectView("/calender");
+
 
     }
 }
