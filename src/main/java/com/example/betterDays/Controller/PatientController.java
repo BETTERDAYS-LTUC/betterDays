@@ -150,7 +150,10 @@ if(patient!=null) {
         Patient patient=patientRepository.findByUsername(p.getName());
         Story newStory=new Story(patient,body,title);
         storyRepo.save(newStory);
+
+
         model.addAttribute("storyy",newStory);
+
         return new RedirectView("/stories");
     }
 
