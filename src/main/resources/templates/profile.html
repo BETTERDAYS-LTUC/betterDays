@@ -64,49 +64,56 @@
                     <form action="/updateProfile" method="post">
                         <div class="field">
                             <span class="fas fa-user"></span>
+                            <label>User Name</label>
                             <input type="text" name="userName" id="userName"
-                                   th:value="${patient.userName}">
-                             <label>First Name</label>
+                                   th:value="${patient.userName}" readonly>
+
                         </div>
 
                         <div class="field">
                             <span class="fas fa-user"></span>
+                            <label>First Name</label>
                             <input type="text" name="firstName" id="firstName"
                                    th:value="${patient.firstName}">
-                             <label>First Name</label>
+
                         </div>
 
                         <div class="field">
                             <span class="fas fa-user"></span>
+                            <label>Last Name</label>
                             <input type="text" name="lastName" id="lastName"
                                    th:value="${patient.lastName}">
-                             <label>Last Name</label>
+
                         </div>
                         <div class="field">
                             <span class="fas fa-user"></span>
+                            <label>Nick Name</label>
                             <input type="text" name="nickName" id="nickName"
                                    th:value="${patient.nickName}">
-                             <label>Nick Name</label>
+
                         </div>
                         <div class="field">
                             <span class="fas fa-user"></span>
+                            <label>email</label>
                             <input type="email" name="email" id="email"
                                    th:value="${patient.email}">
-                             <label>email</label>
+
                         </div>
 
                         <div class="field">
                             <span class="fas fa-user"></span>
+                            <label>First Name</label>
                             <input type="number" name="age" id="age"
                                    th:value="${patient.age}">
-                             <label>First Name</label>
+
                         </div>
 
                         <div class="field">
                             <span class="fas fa-lock"></span>
+                            <label>Password</label>
                             <input name="password" id="password" placeholder="password"type="password"
-                                   th:value="${patient.password}">
-                            <!-- <label>Password</label> -->
+                                   th:value="${patient.password}" readonly>
+
 
                         </div>
                         <button type="submit">Update</button>

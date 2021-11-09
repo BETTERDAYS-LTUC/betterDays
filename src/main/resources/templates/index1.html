@@ -9,12 +9,12 @@
     <link href="icons/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<!--<div class="header">-->
-<!--    <h1><a href='https://code.daypilot.org/41760/using-javascript-html5-event-calendar-in-spring-boot-java'>Using JavaScript/HTML5 Event Calendar in Spring Boot (Java) </a></h1>-->
-<!--    <div><a href="https://javascript.daypilot.org/">DayPilot for JavaScript</a> - HTML5 Calendar/Scheduling Components for JavaScript/Angular/React/Vue</div>-->
-<!--</div>-->
+<div class="header">
+
+</div>
 
 <div class="main" style="display: flex;">
+
     <div style="margin-right: 10px;">
         <div id="nav"></div>
     </div>
@@ -41,7 +41,7 @@
 
 
     const dp = new DayPilot.Calendar("dp");
-    dp.viewType = "Week";
+    dp.viewType = "day"; // here changed it from week to day
     dp.onTimeRangeSelected = function (args) {
         DayPilot.Modal.prompt("Create a new event:", "Event").then(function (modal) {
             var dp = args.control;
@@ -69,7 +69,7 @@
         var params = {
             id: args.e.id(),
             start: args.newStart.toString(),
-            end: args.newEnd.toString()
+            end1: args.newEnd.toString()
         };
         DayPilot.Http.ajax({
             url: '/api/events/move',
@@ -83,7 +83,7 @@
         var params = {
             id: args.e.id(),
             start: args.newStart.toString(),
-            end: args.newEnd.toString()
+            end1: args.newEnd.toString()
         };
         DayPilot.Http.ajax({
             url: '/api/events/move',

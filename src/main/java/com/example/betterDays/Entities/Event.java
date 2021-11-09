@@ -29,9 +29,11 @@ public class Event {
     @ManyToOne
     private DoctorEntity doctor;
 
+    public Event() {
+    }
 
 
-//
+    //
     public Long getId() {
         return id;
     }

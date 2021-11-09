@@ -36,21 +36,33 @@ public class PatientController {
     @PostMapping("/testResult")
     public String getSolution(Principal principal, @RequestParam int submit, Model model) {
         Patient patient = patientRepository.findByUsername(principal.getName());
+        int id = patient.getId();
         if (submit < 3) {
-            patient.setTestResult("Initiation");
+            System.out.println(patient.getNickName());
+            String str = "Initiation";
+            patient.setTestResult(str);
+            patientRepository.save(patient);
             model.addAttribute("patient", patient);
             return "index";
         } else if (submit == 3) {
             patient.setTestResult("Experimentation stage");
+            patientRepository.save(patient);
+            model.addAttribute("patient", patient);
             return "level3";
         } else if (submit >= 4 && submit < 7) {
             patient.setTestResult("Regular Usage");
+            patientRepository.save(patient);
+            model.addAttribute("patient", patient);
             return "level3";
         } else if (submit >= 7 && submit < 10) {
             patient.setTestResult("Risky Usage");
+            patientRepository.save(patient);
+            model.addAttribute("patient", patient);
             return "level1";
         } else {
             patient.setTestResult("Crisis/Treatment ");
+            patientRepository.save(patient);
+            model.addAttribute("patient", patient);
             return "level1";
         }
     }
