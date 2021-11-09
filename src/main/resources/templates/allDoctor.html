@@ -31,7 +31,11 @@
 
             </ul>
             <form th:action="@{/addDoctorToBooking/{id}(id=${doctor.id})}" method="post">
-                <input type="submit" value="select the doctor">
+                <input type="submit" value="select the doctor" style="border-radius: 5px;
+    border: 5px solid #247CFF;
+    background-color: #247CFF;
+    color: white;
+    width: 134px;" >
             </form>
 
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasExample">

@@ -41,8 +41,14 @@ h4{
     text-align: center;
     padding: 25px;
 }
+li{
+ list-style-type: none;
+ text-align: center;
+ }
 
 
+#cardid{
+ display: flex;    justify-content: space-evenly;    flex-wrap: wrap;
 
-
+}
 
