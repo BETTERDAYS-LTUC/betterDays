@@ -3,15 +3,15 @@ package com.example.betterDays.Controller;
 import com.example.betterDays.Entities.DoctorEntity;
 import com.example.betterDays.Entities.Patient;
 import com.example.betterDays.Repositories.DoctorRepository;
+import com.example.betterDays.Entities.Story;
 import com.example.betterDays.Repositories.PatientRepository;
+import com.example.betterDays.Repositories.StoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +28,11 @@ public class PatientController {
     @Autowired
     PatientRepository patientRepository;
     @Autowired
+
     DoctorRepository doctorRepository;
+    StoryRepo storyRepo;
+
+
 
     @Autowired
     PasswordEncoder encoder;
@@ -100,6 +104,7 @@ if(patient!=null) {
         return "profile";
 
     }
+
     @PostMapping("/addDoctorToBooking/{id}")
     public RedirectView profile(@PathVariable int id, Model m, Principal principal){
         DoctorEntity doctor  = doctorRepository.findById(id).get();
@@ -112,4 +117,17 @@ if(patient!=null) {
 
 
     }
+
+
+    @PostMapping("/addstory")
+    public String addStory(@RequestParam String body,@RequestParam String title  ,Principal p, Model model){
+        Patient patient=patientRepository.findByUsername(p.getName());
+        Story newStory=new Story(patient,body,title);
+        model.addAttribute("storyy",newStory);
+        storyRepo.save(newStory);
+        return "index";
+    }
+
+
+
 }
