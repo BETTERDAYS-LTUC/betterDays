@@ -177,4 +177,10 @@ public class DoctorEntity implements UserDetails {
         else
             this.patient.add(patient);
     }
+    public void addEvent(Event event){
+        if (this.bookingList.contains(event))
+            System.out.println("already booked");
+        else
+            this.bookingList.add(event);
+    }
 }
