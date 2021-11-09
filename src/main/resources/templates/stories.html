@@ -30,10 +30,10 @@
 </head>
 <body>
 
+<nav th:replace="fag/nav"></nav>
 
-<h4>Stories of Addicayion</h4>
 
-
+<h4 >Stories of Addicayion</h4>
 <div class="moh">
     <div  th:each="storyy:${story}" class="card"  style="width: 18rem;" >
         <img  src="https://harvestusa.org/wp-content/uploads/2014/01/share_story.jpg" class="card-img-top" alt="...">
@@ -44,13 +44,6 @@
     </div>
 
 </div>
-
-
-
-
-
-
-
-
+<footer th:replace="fag/footer"></footer>
 </body>
 </html>

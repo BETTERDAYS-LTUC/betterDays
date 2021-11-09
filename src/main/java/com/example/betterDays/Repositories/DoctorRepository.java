@@ -4,5 +4,5 @@ import com.example.betterDays.Entities.DoctorEntity;
 import org.springframework.data.repository.CrudRepository;
 
 public interface DoctorRepository extends CrudRepository <DoctorEntity,Integer> {
-    public DoctorEntity findByUsername(String userName);
+     DoctorEntity findByUsername(String userName);
 }
