@@ -27,6 +27,7 @@ public class PatientController {
     @Autowired
 
     DoctorRepository doctorRepository;
+    @Autowired
     StoryRepo storyRepo;
 
 
@@ -37,7 +38,7 @@ public class PatientController {
     @PostMapping("/testResult")
     public String getSolution(Principal principal, @RequestParam int submit, Model model) {
         Patient patient = patientRepository.findByUsername(principal.getName());
-         String firstName=patient.getFirstName();
+        String firstName=patient.getFirstName();
         String lastName=patient.getLastName();
         String userName=patient.getUserName();
         String nickName=patient.getNickName();
@@ -87,6 +88,7 @@ public class PatientController {
     public String getTest() {
         return "test";
     }
+
 
     @GetMapping("/patientProfile")
     public String getPatientProfile(Principal principal, Model model) {
@@ -147,8 +149,11 @@ if(patient!=null) {
     public RedirectView addStory(@RequestParam String body, @RequestParam String title  , Principal p, Model model){
         Patient patient=patientRepository.findByUsername(p.getName());
         Story newStory=new Story(patient,body,title);
-        model.addAttribute("storyy",newStory);
         storyRepo.save(newStory);
+
+
+        model.addAttribute("storyy",newStory);
+
         return new RedirectView("/stories");
     }
 
