@@ -10,12 +10,16 @@ import java.util.*;
 
 @Entity
 public class DoctorEntity implements UserDetails {
-    @Column(unique = true)
+//    @Column(unique = true)
     private String username;
     private String password;
-    @Column(unique = true)
+//    @Column(unique = true)
     private String email;
-     private String authority;
+    private String authority;
+    private String firstName;
+    private String lastName;
+    private int age;
+
 
 
     public DoctorEntity() {
@@ -76,6 +80,10 @@ public class DoctorEntity implements UserDetails {
         this.username = username;
         this.password = password;
         this.authority= "role_doctor";
+        this.email = "email@gmail.com";
+        this.firstName = "firstName";
+        this.lastName = "lastName";
+        this.age = 0;
     }
 
 
@@ -130,5 +138,43 @@ public class DoctorEntity implements UserDetails {
 
     public void setBookingList(List<Event> bookingList) {
         this.bookingList = bookingList;
+    }
+
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public void addPatient(Patient patient){
+        if (this.patient.contains(patient))
+            System.out.println("already a patient");
+        else
+            this.patient.add(patient);
     }
 }

@@ -62,6 +62,13 @@ DoctorEntity doctorEntity;
         this.id=id;
     }
 
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
