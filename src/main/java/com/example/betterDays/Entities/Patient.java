@@ -18,7 +18,7 @@ public class Patient implements UserDetails{
     private String lastName;
 
     @Column(unique = true)
-    private String userName;
+    private String username;
     @Column(unique = true)
     private String nickName;
     @Column(unique = true)
@@ -40,7 +40,7 @@ DoctorEntity doctorEntity;
 
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.username = userName;
         this.nickName = nickName;
         this.email = email;
         this.password = password;
@@ -64,7 +64,7 @@ DoctorEntity doctorEntity;
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override
@@ -112,11 +112,11 @@ DoctorEntity doctorEntity;
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public String getNickName() {

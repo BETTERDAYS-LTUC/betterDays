@@ -31,7 +31,7 @@ public class PatientController {
 
     @PostMapping("/testResult")
     public String getSolution(Principal principal, @RequestParam int submit, Model model) {
-        Patient patient = patientRepository.findByUserName(principal.getName());
+        Patient patient = patientRepository.findByUsername(principal.getName());
         if (submit < 3) {
             patient.setTestResult("Initiation");
             model.addAttribute("patient", patient);
@@ -58,7 +58,7 @@ public class PatientController {
 
     @GetMapping("/patientProfile")
     public String getPatientProfile(Principal principal, Model model) {
-        Patient patient = patientRepository.findByUserName(principal.getName());
+        Patient patient = patientRepository.findByUsername(principal.getName());
         model.addAttribute("patient", patient);
         return "profile";
     }
@@ -72,7 +72,7 @@ public class PatientController {
                                 @RequestParam String password,
                                 @RequestParam int age, Principal principal,
                                 Model model) {
-        Patient patientToUpdate = patientRepository.findByUserName(principal.getName());
+        Patient patientToUpdate = patientRepository.findByUsername(principal.getName());
 
         patientToUpdate.setFirstName(firstName);
         patientToUpdate.setLastName(lastName);
