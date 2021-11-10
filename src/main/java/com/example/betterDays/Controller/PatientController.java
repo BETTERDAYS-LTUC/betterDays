@@ -36,33 +36,48 @@ public class PatientController {
     @PostMapping("/testResult")
     public String getSolution(Principal principal, @RequestParam int submit, Model model) {
         Patient patient = patientRepository.findByUsername(principal.getName());
-        int id = patient.getId();
+        String firstName=patient.getFirstName();
+        String lastName=patient.getLastName();
+        String userName=patient.getUserName();
+        String nickName=patient.getNickName();
+        String email=patient.getEmail();
+        String password=patient.getPassword();
+        int age=patient.getAge();
+
         if (submit < 3) {
-            System.out.println(patient.getNickName());
-            String str = "Initiation";
-            patient.setTestResult(str);
-            patientRepository.save(patient);
-            model.addAttribute("patient", patient);
+            patient.setTestResult("Initiation");
+            patientRepository.delete(patient);
+            Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Initiation");
+            patientRepository.save(patient0);
+            System.out.println(patient.getTestResult());
             return "index";
         } else if (submit == 3) {
             patient.setTestResult("Experimentation stage");
-            patientRepository.save(patient);
-            model.addAttribute("patient", patient);
+            patientRepository.delete(patient);
+            Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Experimentation stage");
+            patientRepository.save(patient0);
+            System.out.println(patient.getTestResult());
             return "level3";
         } else if (submit >= 4 && submit < 7) {
             patient.setTestResult("Regular Usage");
-            patientRepository.save(patient);
-            model.addAttribute("patient", patient);
+            patientRepository.delete(patient);
+            Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Regular Usage");
+            patientRepository.save(patient0);
+            System.out.println(patient.getTestResult());
             return "level3";
         } else if (submit >= 7 && submit < 10) {
             patient.setTestResult("Risky Usage");
-            patientRepository.save(patient);
-            model.addAttribute("patient", patient);
+            patientRepository.delete(patient);
+            Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Risky Usage");
+            patientRepository.save(patient0);
+            System.out.println(patient.getTestResult());
             return "level1";
         } else {
             patient.setTestResult("Crisis/Treatment ");
-            patientRepository.save(patient);
-            model.addAttribute("patient", patient);
+            patientRepository.delete(patient);
+            Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Crisis/Treatment");
+            patientRepository.save(patient0);
+            System.out.println(patient.getTestResult());
             return "level1";
         }
     }

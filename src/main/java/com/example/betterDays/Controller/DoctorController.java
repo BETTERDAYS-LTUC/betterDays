@@ -30,12 +30,12 @@ public class DoctorController {
     doctorRepository.save(doctor);
     return "index";
 }
-//@GetMapping("/doctorProfile")
-//public String getDoctorProfile(Principal principal, Model model) {
-//    DoctorEntity doctor = doctorRepository.findByUsername(principal.getName());
-//    model.addAttribute("patient", doctor);
-//    return "profile";
-//}
+//    @GetMapping("/doctorProfile")
+//    public String getDoctorProfile(Principal principal, Model model) {
+//        DoctorEntity doctor = doctorRepository.findByUsername(principal.getName());
+//        model.addAttribute("doctor", doctor);
+//        return "doctorpro";
+//    }
 
     @GetMapping ("/alldoctor")
     public String home(Model m, Principal p){

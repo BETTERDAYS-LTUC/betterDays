@@ -57,6 +57,7 @@ public class MainController {
 
         Event e = new Event(params.text, params.start,params.end1,patient,doctor);
         doctor.addEvent(e);
+        patient.setBooking(e);
         er.save(e);
 
         return e;

@@ -28,10 +28,10 @@ public class Patient implements UserDetails{
     private String authority;
 
     private String testResult = "null";
-@ManyToOne
-DoctorEntity doctorEntity;
+    @ManyToOne
+    private DoctorEntity doctorEntity;
     @OneToOne
-    Event booking;
+    private Event booking;
 
 
 
@@ -47,6 +47,21 @@ DoctorEntity doctorEntity;
         this.age = age;
         this.authority="role_patient";
     }
+
+    public Patient(String firstName, String lastName, String userName, String nickName, String email, String password, int age,String testResult) {
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = userName;
+        this.nickName = nickName;
+        this.email = email;
+        this.password = password;
+        this.age = age;
+        this.authority="role_patient";
+        this.testResult=testResult;
+        this.id=id;
+    }
+
 
     public String getAuthority() {
         return authority;
@@ -168,6 +183,18 @@ DoctorEntity doctorEntity;
 
     public void setDoctorEntity(DoctorEntity doctorEntity) {
         this.doctorEntity = doctorEntity;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Event getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Event booking) {
+        this.booking = booking;
     }
 }
 

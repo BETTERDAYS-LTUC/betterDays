@@ -37,11 +37,32 @@
 
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasExample">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+                    <h5 class="offcanvas-title" id="offcanvasLabel">Patients</h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here.
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item" th:each="patient:${patient.patient}">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <span th:text="${patient.firstName + ' ' + patient.lastName}"></span>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong >Email: <span th:text="${patient.email}"></span></strong><br/>
+                                    <strong th:text="${patient.firstName} + '\&#39;s' + ' '"></strong>
+                                    <strong >Age: <span th:text="${patient.age}"></span></strong><br/>
+                                    <strong th:text="${patient.booking.text}"></strong><br/>
+                                    <strong>Level of addiction : <span th:text="${patient.testResult}"></span></strong>
+                                    <br/>
+                                    <br/>
+                                    <p>The session starts at :<span th:text="${patient.booking.start}"></span></p>
+                                    <p>The session ends at :<span th:text="${patient.booking.end1}"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
