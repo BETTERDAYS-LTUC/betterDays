@@ -2,7 +2,7 @@ package com.example.betterDays.Entities;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+//import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +27,7 @@ public class Patient implements UserDetails{
     private DoctorEntity doctorEntity;
     @OneToOne
     private Event booking;
+    private ArrayList<Story> stories;
 
 
     public Patient(){}
@@ -62,7 +63,7 @@ public class Patient implements UserDetails{
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority simpleGrantedAuthority=new SimpleGrantedAuthority(authority);
-        List<SimpleGrantedAuthority> grantedAuthorities=new ArrayList<SimpleGrantedAuthority>();
+        ArrayList<SimpleGrantedAuthority> grantedAuthorities=new ArrayList<SimpleGrantedAuthority>();
         grantedAuthorities.add(simpleGrantedAuthority);
         return grantedAuthorities;
     }
@@ -155,5 +156,16 @@ public class Patient implements UserDetails{
     }
     public void setBooking(Event booking) {
         this.booking = booking;
+    }
+
+    public ArrayList<Story> getStories() {
+        return stories;
+    }
+
+    public void setStories(ArrayList<Story> stories) {
+        this.stories = stories;
+    }
+    public void addStory(Story story){
+            this.stories.add(story);
     }
 }

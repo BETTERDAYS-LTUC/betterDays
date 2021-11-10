@@ -34,21 +34,35 @@
 <nav th:replace="fag/nav"></nav>
 
 
-<h4 >Patients Feedback </h4>
-<div class="moh">
-    <div  th:each="storyy:${story}" class="card"  style="width: 18rem;" >
-        <img  src="https://www.behrmancap.com/wp-content/uploads/2015/03/person-placeholder.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title" th:text="${storyy.title}"></h5>
-            <p class="card-text" th:text="${storyy.body}"></p>
+<h4 >Patients Stories </h4>
+
+
+
+    <div class="moh">
+        <div th:each="patient:${patients}">
+        <div class="card p-3 py-4" th:each="story:${patient.stories}">
+            <div class="text-center"> <img src="https://www.nautec.com/wp-content/uploads/2018/04/placeholder-person.png" width="100" class="rounded-circle">
+                <br>
+                <strong class="mt-2" th:text="${story.title}"></strong> <br>
+                <hr class="line"> <small class="mt-4" th:text="${story.body}"></small>
         </div>
     </div>
-
-
-
-    
-
+        </div>
 </div>
+<!--<div class="moh">-->
+<!--    <div  th:each="storyy:${story}" class="card"  style="width: 18rem;" >-->
+<!--        <img  src="https://www.behrmancap.com/wp-content/uploads/2015/03/person-placeholder.jpg" class="card-img-top" alt="...">-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title" th:text="${storyy.title}"></h5>-->
+<!--            <p class="card-text" th:text="${storyy.body}"></p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+
+<!--    -->
+
+<!--</div>-->
 <footer th:replace="fag/footer"></footer>
 </body>
 </html>

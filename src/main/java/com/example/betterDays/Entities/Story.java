@@ -10,14 +10,13 @@ public class Story {
     private String body;
     private String title;
 
-    @ManyToOne
-    private Patient user;
+//    @ManyToOne
+//    private Patient user;
 
     public Story(){
     }
 
-    public Story (Patient p,String body,String  title){
-        this.user=p;
+    public Story (String body,String  title){
         this.body=body;
         this.title=title;
     }
@@ -39,13 +38,13 @@ public class Story {
         this.body = body;
     }
 
-    public Patient getUser() {
-        return user;
-    }
-
-    public void setUser(Patient user) {
-        this.user = user;
-    }
+//    public Patient getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(Patient user) {
+//        this.user = user;
+//    }
 
     public String getTitle() {
         return title;

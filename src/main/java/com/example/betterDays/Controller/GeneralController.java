@@ -62,8 +62,8 @@ public class GeneralController {
     }
     @GetMapping("/stories")
     public String getStory(Model model){
-        ArrayList <Story> allstories=(ArrayList<Story>) storyRepo.findAll();
-        model.addAttribute("story",allstories);
+        ArrayList <Patient> allstories=(ArrayList<Patient>) patientRepository.findAll();
+        model.addAttribute("patients",allstories);
         return "stories";
     }
 }

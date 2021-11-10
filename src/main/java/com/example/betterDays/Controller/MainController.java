@@ -38,18 +38,44 @@ public class MainController {
     Iterable<Event> events(@RequestParam("start") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime start, @RequestParam("end1") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime end1) {
         return er.findBetween(start, end1);
     }
-    @PostMapping("/api/events/create")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @Transactional
-    Event createEvent(@RequestBody EventCreateParams params, Principal principal) {
-        Patient patient = patientRepository.findByUsername(principal.getName());
-        DoctorEntity doctor = doctorRepository.findById(patient.getDoctorEntity().getId()).get();
-        Event e = new Event(params.text, params.start,params.end1,patient,doctor);
+//    @PostMapping("/api/events/create")
+//    @JsonSerialize(using = LocalDateTimeSerializer.class)
+//    @Transactional
+//    Event createEvent(@RequestBody EventCreateParams params, Principal principal) {
+//        Patient patient = patientRepository.findByUsername(principal.getName());
+//        DoctorEntity doctor = doctorRepository.findById(patient.getDoctorEntity().getId()).get();
+//        Event e = new Event(params.text, params.start,params.end,patient,doctor);
+//        doctor.addEvent(e);
+//        patient.setBooking(e);
+//        er.save(e);
+//        return e;
+//    }
+@PostMapping("/api/events/create")
+@JsonSerialize(using = LocalDateTimeSerializer.class)
+@Transactional
+Event createEvent(@RequestBody EventCreateParams params, Principal principal) {
+
+     Patient patient = patientRepository.findByUsername(principal.getName());
+     DoctorEntity doctor = doctorRepository.findById(patient.getDoctorEntity().getId()).get();
+    Event e = new Event();
+    if(doctor != null) {
+        e.setStart(params.start);
+        e.setEnd1(params.end);
+        e.setText(params.text);
+        patient.setBooking(e);
         doctor.addEvent(e);
+        er.save(e);
+    }
+    else {
+        e.setStart(params.start);
+        e.setEnd1(params.end);
+        e.setText(params.text);
         patient.setBooking(e);
         er.save(e);
-        return e;
     }
+
+    return e;
+}
     @PostMapping("/api/events/move")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @Transactional
@@ -71,7 +97,7 @@ public class MainController {
     }
     public static class EventCreateParams {
         public LocalDateTime start;
-        public LocalDateTime end1;
+        public LocalDateTime end;
         public String text;
         public Long resource;
     }

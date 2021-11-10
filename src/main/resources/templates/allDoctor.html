@@ -19,38 +19,59 @@
 <!-- Watch this video https://youtu.be/dbGeDFl1v1s -->
 <nav th:replace="fag/nav"></nav>
 <section id="cardid">
-    <div class="card" th:each="doctor:${doctor}" >
-        <img src="https://www.nautec.com/wp-content/uploads/2018/04/placeholder-person.png" alt="">
-        <h2 th:text="${doctor.username}" ></h2>
-        <div class="cont" >
-            <ul>
-<!--                <li>First Name : <span th:text="${doctor.firstName }"></span></li>-->
-<!--                <li>Last Name : <span th:text="${doctor.lastName }"></span></li>-->
-                <li>Email : <span th:text="${doctor.email }"></span></li>
-                <li>Age : <span th:text="${doctor.age }"></span></li>
+    <div class="moh">
 
-            </ul>
-            <form th:action="@{/addDoctorToBooking/{id}(id=${doctor.id})}" method="post">
-                <input type="submit" value="select the doctor" style="border-radius: 5px;
-    border: 5px solid #247CFF;
-    background-color: #247CFF;
-    color: white;
-    width: 134px;" >
-            </form>
-
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasExample">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here.
+        <div class="container d-flex justify-content-center">
+            <div class="card p-3 py-4" th:each="doctor:${doctor}">
+                <div class="text-center"> <img src="https://www.nautec.com/wp-content/uploads/2018/04/placeholder-person.png" width="100" class="rounded-circle">
+                    <br>
+                    <strong class="mt-2" th:text="${doctor.firstName + ' ' +doctor.lastName}"></strong> <br>
+                    <p class="mt-1 clearfix">Doctor</p>
+                    <hr class="line"> <small class="mt-4">I am an android developer working at google Inc at california,USA</small>
+                    <form th:action="@{/addDoctorToBooking/{id}(id=${doctor.id})}" method="post">
+                                        <input type="submit" value="select the doctor" style="border-radius: 5px;
+                            border: 5px solid #247CFF;
+                            background-color: #247CFF;
+                            color: white;
+                            width: 134px;" >
+                                    </form>
+<!--                    <div class="profile mt-5"> <button class="profile_button px-5"-->
+<!--                        style="    cursor: pointer;-->
+<!--                        border-radius: 5px;-->
+<!--                        border: 5px solid #247CFF;-->
+<!--                        margin-top: 10px;-->
+<!--                        font-size: 15px;-->
+<!--                        background-color: #247CFF;-->
+<!--                        color: white;-->
+<!--                        width: 190px;">View profile</button> </div>-->
                 </div>
             </div>
-
-
         </div>
     </div>
+
+<!--    <div class="card" th:each="doctor:${doctor}" >-->
+<!--        <img src="https://www.nautec.com/wp-content/uploads/2018/04/placeholder-person.png" alt="">-->
+<!--        <h2 th:text="${doctor.username}" ></h2>-->
+<!--        <div class="cont" >-->
+<!--            <ul>-->
+<!--&lt;!&ndash;                <li>First Name : <span th:text="${doctor.firstName }"></span></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li>Last Name : <span th:text="${doctor.lastName }"></span></li>&ndash;&gt;-->
+<!--                <li>Email : <span th:text="${doctor.email }"></span></li>-->
+<!--                <li>Age : <span th:text="${doctor.age }"></span></li>-->
+
+<!--            </ul>-->
+<!--            <form th:action="@{/addDoctorToBooking/{id}(id=${doctor.id})}" method="post">-->
+<!--                <input type="submit" value="select the doctor" style="border-radius: 5px;-->
+<!--    border: 5px solid #247CFF;-->
+<!--    background-color: #247CFF;-->
+<!--    color: white;-->
+<!--    width: 134px;" >-->
+<!--            </form>-->
+<!--            -->
+
+
+<!--        </div>-->
+<!--    </div>-->
 
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

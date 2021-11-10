@@ -63,7 +63,7 @@ body{
     align-items: center;
     justify-content: space-between;
     text-align: center;
-    height: 200px;
+    height: 255px;
 }
 
 .card:hover > .link{
