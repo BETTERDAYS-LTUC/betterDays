@@ -19,10 +19,10 @@
 <!-- Watch this video https://youtu.be/dbGeDFl1v1s -->
 <nav th:replace="fag/nav"></nav>
 <section id="cardid">
-    <div class="card" th:each="doctor:${doctor}">
+    <div class="card" th:each="doctor:${doctor}" >
         <img src="https://www.nautec.com/wp-content/uploads/2018/04/placeholder-person.png" alt="">
         <h2 th:text="${doctor.username}" ></h2>
-        <div class="cont">
+        <div class="cont" >
             <ul>
 <!--                <li>First Name : <span th:text="${doctor.firstName }"></span></li>-->
 <!--                <li>Last Name : <span th:text="${doctor.lastName }"></span></li>-->
@@ -47,6 +47,7 @@
                     Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here.
                 </div>
             </div>
+
 
         </div>
     </div>

@@ -1,14 +1,17 @@
 package com.example.betterDays.Controller;
 import com.example.betterDays.Entities.DoctorEntity;
 import com.example.betterDays.Entities.Patient;
+import com.example.betterDays.Entities.Story;
 import com.example.betterDays.Repositories.DoctorRepository;
 import com.example.betterDays.Repositories.PatientRepository;
+import com.example.betterDays.Repositories.StoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +25,8 @@ public class GeneralController {
     PatientRepository patientRepository;
     @Autowired
     DoctorRepository doctorRepository;
+    @Autowired
+    StoryRepo storyRepo;
     @GetMapping("/")
     public String getHome(){
 // DoctorEntity doctor=new DoctorEntity("doctor1", encoder.encode("0"));
@@ -54,5 +59,11 @@ public class GeneralController {
     @GetMapping("/calender")
     public String getcalender(){
         return "index1";
+    }
+    @GetMapping("/stories")
+    public String getStory(Model model){
+        ArrayList <Story> allstories=(ArrayList<Story>) storyRepo.findAll();
+        model.addAttribute("story",allstories);
+        return "stories";
     }
 }
