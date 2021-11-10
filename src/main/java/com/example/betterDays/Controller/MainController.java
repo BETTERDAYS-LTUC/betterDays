@@ -3,8 +3,12 @@ package com.example.betterDays.Controller;
 
 
 
+import com.example.betterDays.Entities.DoctorEntity;
 import com.example.betterDays.Entities.Event;
+import com.example.betterDays.Entities.Patient;
+import com.example.betterDays.Repositories.DoctorRepository;
 import com.example.betterDays.Repositories.EventRepository;
+import com.example.betterDays.Repositories.PatientRepository;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 //import org.daypilot.demo.html5eventcalendarspring.domain.Event;
@@ -15,6 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
 import java.time.LocalDateTime;
 
 @RestController
@@ -22,6 +27,12 @@ public class MainController {
 
     @Autowired
     EventRepository er;
+
+    @Autowired
+    PatientRepository patientRepository;
+
+    @Autowired
+    DoctorRepository doctorRepository;
 
     @RequestMapping("/api")
     @ResponseBody
@@ -39,13 +50,13 @@ public class MainController {
     @PostMapping("/api/events/create")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @Transactional
-    Event createEvent(@RequestBody EventCreateParams params) {
+    Event createEvent(@RequestBody EventCreateParams params, Principal principal) {
 
-        Event e = new Event();
-        e.setStart(params.start);
-        e.setEnd1(params.end1);
-        e.setText(params.text);
+        Patient patient = patientRepository.findByUsername(principal.getName());
+        DoctorEntity doctor = doctorRepository.findById(patient.getDoctorEntity().getId()).get();
 
+        Event e = new Event(params.text, params.start,params.end1,patient,doctor);
+        doctor.addEvent(e);
         er.save(e);
 
         return e;

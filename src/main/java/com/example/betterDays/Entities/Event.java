@@ -13,25 +13,34 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String text;
+    private String text;
 
-    LocalDateTime start;
+    private LocalDateTime start;
 
-    LocalDateTime end1 ;
+    private LocalDateTime end1 ;
 
-    String color;
+    private String color;
 
 
     @OneToOne
-    Patient patient;
+    private Patient patient;
     @ManyToOne
     private DoctorEntity doctor;
 
+    public Event() {
+    }
 
+    public Event(String text, LocalDateTime start, LocalDateTime end1, Patient patient, DoctorEntity doctor) {
+        this.text = text;
+        this.start = start;
+        this.end1 = end1;
+        this.patient = patient;
+        this.doctor = doctor;
+    }
 
-//
+    //
     public Long getId() {
         return id;
     }

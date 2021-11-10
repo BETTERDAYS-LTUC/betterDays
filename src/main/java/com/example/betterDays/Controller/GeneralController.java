@@ -69,7 +69,7 @@ public class GeneralController {
 
     @GetMapping("/calender")
     public String getcalender(){
-        return "index";
+        return "index1";
     }
 
 
