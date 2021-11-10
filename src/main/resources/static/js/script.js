@@ -1,5 +1,4 @@
 
-
 let form =document.getElementById("form");
      form.addEventListener('submit',snedReply);
       function snedReply(event){
@@ -15,5 +14,6 @@ let form =document.getElementById("form");
           document.getElementById('form').reset()
 
      }
+
 
 

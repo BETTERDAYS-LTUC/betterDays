@@ -48,7 +48,7 @@ DoctorEntity doctorEntity;
         this.authority="role_patient";
         this.testResult="none";
     }
-    public Patient(String firstName, String lastName, String userName, String nickName, String email, String password, int age,String testResult,int id) {
+    public Patient(String firstName, String lastName, String userName, String nickName, String email, String password, int age,String testResult) {
 
         this.firstName = firstName;
         this.lastName = lastName;
