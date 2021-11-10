@@ -44,7 +44,8 @@
                     <h5 class="offcanvas-title" id="offcanvasLabel">Appointments</h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                <div class="offcanvas-body">
+
+                <div th:if="${event!=null}" class="offcanvas-body">
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">

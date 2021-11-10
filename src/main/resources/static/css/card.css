@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    display: grid;
+    place-items: center;
+    background: #397DC3
+}
+
+.card {
+    color: #fff;
+    width: 350px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #397DC3);
+    /* box-shadow: 20px 20px 60px #1d1f96, -20px -20px 60px #c552d8; */
+    border: none
+}
+
+.neo-button {
+    width: 40px;
+    height: 40px;
+    outline: 0 !important;
+    cursor: pointer;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 50%;
+    /* background: linear-gradient(145deg, #9a40a9, #b74cc9); */
+    /* box-shadow: inset 20px 20px 60px #913ca0, inset -20px -20px 60px #c552d8 */
+}
+
+.num {
+    color: #eee !important
+}
+
+.line {
+    color: #fff
+}
+
+.neo-button:active {
+    border-radius: 50%;
+    background: #397DC3;
+    box-shadow: 28px 28px 57px #397DC3, -28px -28px 57px #397DC3
+}
+
+
+
+.profile_button {
+    color: #fff;
+    padding: 10px;
+    border: none;
+    outline: 0 !important;
+    border-radius: 50px;
+    background: #397DC3;
+    /* box-shadow: 28px 28px 57px #397DC3, -28px -28px 57px #397DC3 */
+}
