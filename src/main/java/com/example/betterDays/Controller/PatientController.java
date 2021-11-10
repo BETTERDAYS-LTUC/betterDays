@@ -29,7 +29,7 @@ public class PatientController {
     @Autowired
     PasswordEncoder encoder;
     @PostMapping("/testResult")
-    public String getSolution(Principal principal, @RequestParam int submit, Model model) {
+    public String getSolution(Principal principal, @RequestParam int submit, Model model) throws Exception {
         Patient patient = patientRepository.findByUsername(principal.getName());
         String firstName=patient.getFirstName();
         String lastName=patient.getLastName();
@@ -38,12 +38,14 @@ public class PatientController {
         String email=patient.getEmail();
         String password=patient.getPassword();
         int age=patient.getAge();
+
         if (submit < 3) {
             patient.setTestResult("Initiation");
             patientRepository.delete(patient);
             Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Initiation");
             patientRepository.save(patient0);
             System.out.println(patient.getTestResult());
+            PostgreSQLJDBC.main(new String[] {"Initiation"});
             return "index";
         } else if (submit == 3) {
             patient.setTestResult("Experimentation stage");
@@ -51,6 +53,7 @@ public class PatientController {
             Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Experimentation stage");
             patientRepository.save(patient0);
             System.out.println(patient.getTestResult());
+            PostgreSQLJDBC.main(new String[] {"Experimentation stage"});
             return "level3";
         } else if (submit >= 4 && submit < 7) {
             patient.setTestResult("Regular Usage");
@@ -58,6 +61,7 @@ public class PatientController {
             Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Regular Usage");
             patientRepository.save(patient0);
             System.out.println(patient.getTestResult());
+            PostgreSQLJDBC.main(new String[] {"Regular Usage"});
             return "level3";
         } else if (submit >= 7 && submit < 10) {
             patient.setTestResult("Risky Usage");
@@ -65,13 +69,15 @@ public class PatientController {
             Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Risky Usage");
             patientRepository.save(patient0);
             System.out.println(patient.getTestResult());
+            PostgreSQLJDBC.main(new String[] {"Risky Usage"});
             return "level1";
         } else {
-            patient.setTestResult("Crisis/Treatment ");
+            patient.setTestResult("Crisis/Treatment");
             patientRepository.delete(patient);
             Patient patient0=new Patient(firstName,lastName,userName,nickName,email,password,age,"Crisis/Treatment");
             patientRepository.save(patient0);
             System.out.println(patient.getTestResult());
+            PostgreSQLJDBC.main(new String[] {"Crisis/Treatment"});
             return "level1";
         }
     }
