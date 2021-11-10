@@ -55,7 +55,7 @@ public class MainController {
         Patient patient = patientRepository.findByUsername(principal.getName());
         DoctorEntity doctor = doctorRepository.findById(patient.getDoctorEntity().getId()).get();
 
-        Event e = new Event(params.text, params.start,params.end1,patient,doctor);
+        Event e = new Event(params.text, params.start,params.end,patient,doctor);
         doctor.addEvent(e);
         er.save(e);
 
@@ -91,7 +91,7 @@ public class MainController {
 
     public static class EventCreateParams {
         public LocalDateTime start;
-        public LocalDateTime end1;
+        public LocalDateTime end;
         public String text;
         public Long resource;
     }
