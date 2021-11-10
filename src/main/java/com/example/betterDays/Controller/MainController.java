@@ -59,7 +59,6 @@ public class MainController {
         doctor.addEvent(e);
         patient.setBooking(e);
         er.save(e);
-
         return e;
     }
 

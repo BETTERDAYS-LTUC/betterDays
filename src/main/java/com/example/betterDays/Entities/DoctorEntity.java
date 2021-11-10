@@ -19,6 +19,8 @@ public class DoctorEntity implements UserDetails {
     private String firstName;
     private String lastName;
     private int age;
+    private String bio ;
+
 
 
 
@@ -84,6 +86,7 @@ public class DoctorEntity implements UserDetails {
         this.firstName = "firstName";
         this.lastName = "lastName";
         this.age = 0;
+        this.bio="yourbio";
     }
 
 
@@ -168,6 +171,14 @@ public class DoctorEntity implements UserDetails {
         return age;
     }
 
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
     public void setAge(int age) {
         this.age = age;
     }
@@ -183,4 +194,5 @@ public class DoctorEntity implements UserDetails {
         else
             this.bookingList.add(event);
     }
+
 }

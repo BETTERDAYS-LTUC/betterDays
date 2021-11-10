@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
@@ -41,6 +42,32 @@ public class DoctorController {
     public String home(Model m, Principal p){
         m.addAttribute("doctor",doctorRepository.findAll());
         return ("allDoctor");
+    }
+    @PostMapping("/updateProfileDoctor")
+    public String updateProfile(@RequestParam String firstName,
+                                @RequestParam String lastName,
+                                @RequestParam String userName,
+                                @RequestParam String email,
+                                @RequestParam String password,
+                                @RequestParam int age,
+                                @RequestParam String bio,
+                                Principal principal,
+                                Model model) {
+        DoctorEntity doctorToUpdate = doctorRepository.findByUsername(principal.getName());
+
+        doctorToUpdate.setFirstName(firstName);
+        doctorToUpdate.setLastName(lastName);
+        doctorToUpdate.setAge(age);
+        doctorToUpdate.setEmail(email);
+        doctorToUpdate.setPassword(encoder.encode(password));
+        doctorToUpdate.setUsername(userName);
+        doctorToUpdate.setBio(bio);
+
+        doctorRepository.save(doctorToUpdate);
+        model.addAttribute("patient", doctorToUpdate);
+
+        return "index";
+
     }
 }
 

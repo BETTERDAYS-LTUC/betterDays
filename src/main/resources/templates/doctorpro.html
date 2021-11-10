@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -28,7 +28,9 @@
                 <li>Last Name : <span th:text="${patient.lastName }"></span></li>
                 <li>Email : <span th:text="${patient.email }"></span></li>
                 <li>Age : <span th:text="${patient.age }"></span></li>
-<!--                <li>Test Result : <span th:text="${patient.testResult }"></span></li>-->
+                <li>Bio: <span th:text="${patient.bio }"></span></li>
+
+                <!--                <li>Test Result : <span th:text="${patient.testResult }"></span></li>-->
             </ul>
             <div>
                 <a  data-bs-target="#offcanvas" class="btn btn-primary" data-bs-toggle="offcanvas" role="button"
@@ -81,86 +83,62 @@
                     <h5 class="modal-title" id="exampleModalLabel">Edit profile</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-<!--                <div class="modal-body">-->
-<!--                    <form action="/updateProfile" method="post">-->
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-user"></span>-->
-<!--                            <input type="text" name="userName" id="userName"-->
-<!--                                   th:value="${patient.userName}">-->
-<!--                            <label>First Name</label>-->
-<!--                        </div>-->
+                <div class="modal-body">
+                    <form action="updateProfileDoctor" method="post">
+                        <div class="field">
+                            <span class="fas fa-user"></span>
+                            <input type="text" name="userName" id="userName"
+                                   th:value="${patient.username}">
+                            <label>User Name</label>
+                        </div>
+<!---->
+                        <div class="field">
+                            <span class="fas fa-user"></span>
+                            <input type="text" name="firstName" id="firstName"
+                                   th:value="${patient.firstName}">
+                            <label>First Name</label>
+                        </div>
 
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-user"></span>-->
-<!--                            <input type="text" name="firstName" id="firstName"-->
-<!--                                   th:value="${patient.firstName}">-->
-<!--                            <label>First Name</label>-->
-<!--                        </div>-->
+                        <div class="field">
+                            <span class="fas fa-user"></span>
+                            <input type="text" name="lastName" id="lastName"
+                                   th:value="${patient.lastName}">
+                            <label>Last Name</label>
+                        </div>
+                        <div class="field">
+                            <span class="fas fa-user"></span>
+                            <input type="text" name="bio" id="Bio"
+                                   th:value="${patient.bio}">
+                            <label>Bio </label>
+                        </div>
+                        <div class="field">
+                            <span class="fas fa-user"></span>
+                            <input type="email" name="email" id="email"
+                                   th:value="${patient.email}">
+                            <label>email</label>
+                        </div>
 
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-user"></span>-->
-<!--                            <input type="text" name="lastName" id="lastName"-->
-<!--                                   th:value="${patient.lastName}">-->
-<!--                            <label>Last Name</label>-->
-<!--                        </div>-->
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-user"></span>-->
-<!--                            <input type="text" name="nickName" id="nickName"-->
-<!--                                   th:value="${patient.nickName}">-->
-<!--                            <label>Nick Name</label>-->
-<!--                        </div>-->
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-user"></span>-->
-<!--                            <input type="email" name="email" id="email"-->
-<!--                                   th:value="${patient.email}">-->
-<!--                            <label>email</label>-->
-<!--                        </div>-->
+                        <div class="field">
+                            <span class="fas fa-user"></span>
+                            <input type="number" name="age" id="age"
+                                   th:value="${patient.age}">
+                            <label>Age</label>
+                        </div>
 
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-user"></span>-->
-<!--                            <input type="number" name="age" id="age"-->
-<!--                                   th:value="${patient.age}">-->
-<!--                            <label>First Name</label>-->
-<!--                        </div>-->
+                        <div class="field">
+                            <span class="fas fa-lock"></span>
+                            <input name="password" id="password" placeholder="password"type="password"
+                                   th:value="${patient.password}">
+                             <label>Password</label>
 
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-lock"></span>-->
-<!--                            <input name="password" id="password" placeholder="password"type="password"-->
-<!--                                   th:value="${patient.password}">-->
-<!--                            &lt;!&ndash; <label>Password</label> &ndash;&gt;-->
-
-<!--                        </div>-->
-<!--                        <button type="submit">Update</button>-->
-<!--                    </form>-->
-<!--                </div>-->
+                        </div>
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <div align="center">
-        <br>
-        <h1>Employee Form</h1>
-        <br>
-        <form th:action="@{/employee}" th:object="${employeeForm}" method="POST">
-            <table>
-                <tr>
-                    <td>Emp ID</td>
-                    <td><input type="text" name="id" /></td>
-                </tr>
-                <tr>
-                    <td>Emp Name</td>
-                    <td><input type="text" name="name" /></td>
-                </tr>
-                <tr>
-                    <td>Emp Designation</td>
-                    <td><select name="designation">
-                        <option th:each="designation :${designations}"
-                                th:text="${designation}">
-                    </select></td>
-                </tr>
-            </table>
-            <input type="submit" value="Save" />
-        </form>
-    </div>
+
 
 
 </section>
