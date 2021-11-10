@@ -43,7 +43,7 @@ public class MainController {
 
         Event e = new Event();
         e.setStart(params.start);
-        e.setEnd1(params.end1);
+        e.setEnd1(params.end);
         e.setText(params.text);
 
         er.save(e);
@@ -80,9 +80,10 @@ public class MainController {
 
     public static class EventCreateParams {
         public LocalDateTime start;
-        public LocalDateTime end1;
+        public LocalDateTime end;
         public String text;
         public Long resource;
+
     }
 
     public static class EventMoveParams {
