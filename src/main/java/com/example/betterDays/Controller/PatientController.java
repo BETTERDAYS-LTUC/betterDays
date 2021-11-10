@@ -1,8 +1,11 @@
 package com.example.betterDays.Controller;
 
 import com.example.betterDays.Entities.DoctorEntity;
+import com.example.betterDays.Entities.DoctorWaiting;
 import com.example.betterDays.Entities.Patient;
 import com.example.betterDays.Repositories.DoctorRepository;
+import com.example.betterDays.Repositories.DoctorWaitingRepsitory;
+import com.example.betterDays.Repositories.Doctorwait;
 import com.example.betterDays.Repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.lang.reflect.Array;
 import java.security.Principal;
+import java.util.Arrays;
 
 @Controller
 public class PatientController {
@@ -28,7 +33,12 @@ public class PatientController {
     @Autowired
     PatientRepository patientRepository;
     @Autowired
+    Doctorwait doctorwait;
+
+    @Autowired
     DoctorRepository doctorRepository;
+    @Autowired
+    DoctorWaitingRepsitory doctorWaitingRepsitory;
 
     @Autowired
     PasswordEncoder encoder;
@@ -91,12 +101,17 @@ public class PatientController {
     public String getPatientProfile(Principal principal, Model model) {
         Patient patient = patientRepository.findByUsername(principal.getName());
         DoctorEntity doctor = doctorRepository.findByUsername(principal.getName());
-if(patient!=null) {
+
+        System.out.println(patient.getAuthority().contains("role_patient"));
+if(patient!=null && patient.getAuthority().contains("role_patient")) {
     model.addAttribute("patient", patient);
     return "profile";
-}else if (doctor!=null){
+}else if (doctor!=null && patient.getAuthority().contains("role_doctor")) {
     model.addAttribute("patient", doctor);
     return "doctorpro";
+}else if(patient!=null && patient.getAuthority().contains("role_admin")){
+    model.addAttribute("patient", patient);
+    return "adnimpro";
 }else {
     return "index";
 }
@@ -123,9 +138,7 @@ if(patient!=null) {
 
         patientRepository.save(patientToUpdate);
         model.addAttribute("patient", patientToUpdate);
-
         return "profile";
-
     }
     @PostMapping("/addDoctorToBooking/{id}")
     public RedirectView profile(@PathVariable int id, Model m, Principal principal){
@@ -136,7 +149,5 @@ if(patient!=null) {
         patientRepository.save(patient);
         doctorRepository.save(doctor);
         return new RedirectView("/calender");
-
-
     }
 }

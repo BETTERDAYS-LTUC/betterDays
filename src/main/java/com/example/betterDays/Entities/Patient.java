@@ -33,7 +33,8 @@ public class Patient implements UserDetails{
     @OneToOne
     private Event booking;
 
-
+    @OneToMany(mappedBy="doctorWatingEntity")
+    private List<DoctorWaiting> DoctorWaitingList  ;
 
     public Patient(){}
     public Patient(String firstName, String lastName, String userName, String nickName, String email, String password, int age) {
@@ -196,6 +197,22 @@ public class Patient implements UserDetails{
     public void setBooking(Event booking) {
         this.booking = booking;
     }
+
+    public void addWattingDoctor(DoctorWaiting doctorwaiting){
+        if (this.DoctorWaitingList.contains(doctorwaiting))
+            System.out.println("already a patient");
+        else
+            this.DoctorWaitingList.add(doctorwaiting);
+    }
+
+    public List<DoctorWaiting> getDoctorWaitingList() {
+        return DoctorWaitingList;
+    }
+
+    public void setDoctorWaitingList(List<DoctorWaiting> doctorWaitingList) {
+        DoctorWaitingList = doctorWaitingList;
+    }
+
 }
 
 
