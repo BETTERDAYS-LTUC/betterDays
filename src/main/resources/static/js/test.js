@@ -4,6 +4,8 @@
 // create an empty object to store answers
 var answers = [];
 
+let flag=false;
+
 // get each question div element
 
 var question_one = document.getElementById('question-1');
@@ -29,75 +31,224 @@ var question_fifteen = document.getElementById('question-15');
 
 
 function storeAnswer(question_number, event) {
+ console.log(event.target.value);
+
   if (event.target.type === 'radio') {
     console.log(event.target.value);
     console.log(answers);
     answers.push(event.target.value);
   }
+
+//  if(event.target.value =="undefined"){
+//  flag=false;
+//  }else{
+//  flag=true;
+//  }
+
+
 }
 
 //add event listener to each question div. Click event calls storeAnswer function with corresponding question number passed as an argument so that correct object property is created
 
 question_one.addEventListener('click',
  function(event) {
-  storeAnswer(1, event);
+
+  if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+         storeAnswer(1, event);
+     flag=true;
+
+   }else{ flag=false;
+  }
 });
 
 question_two.addEventListener('click',
 function(event) {
-  storeAnswer(2, event);
+  if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+          storeAnswer(2, event);
+     flag=true;
+
+   }else{ flag=false;
+  }
+
+
+
 });
 
 question_three.addEventListener('click', function(event) {
-  storeAnswer(3, event);
+
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+          storeAnswer(3, event);
+
+     flag=true;
+
+   }else{ flag=false;
+  }
+
 });
 
 question_four.addEventListener('click', function(event) {
-  storeAnswer(4, event);
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+         storeAnswer(4, event);
+
+     flag=true;
+
+   }else{ flag=false;
+  }
+
+
+
 });
 
 question_five.addEventListener('click', function(event) {
-  storeAnswer(5, event);
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+       storeAnswer(5, event);
+
+     flag=true;
+
+   }else{ flag=false;
+  }
 });
 
 question_six.addEventListener('click', function(event) {
-  storeAnswer(6, event);
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+        storeAnswer(6, event);
+
+     flag=true;
+
+   }else{ flag=false;
+  }
 });
 
 question_seven.addEventListener('click', function(event) {
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
   storeAnswer(7, event);
+     flag=true;
+
+   }else{ flag=false;
+  }
+
+
+
 });
 
 question_eight.addEventListener('click', function(event) {
-  storeAnswer(8, event);
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+      storeAnswer(8, event);
+
+     flag=true;
+
+   }else{ flag=false;
+  }
+
+
+
 });
 
 question_nine.addEventListener('click', function(event) {
-  storeAnswer(9, event);
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+     storeAnswer(9, event);
+
+     flag=true;
+
+   }else{ flag=false;
+  }
+
+
+
 });
 
 question_ten.addEventListener('click', function(event) {
-  storeAnswer(10, event);
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+         storeAnswer(10, event);
+
+     flag=true;
+
+   }else{ flag=false;
+  }
+
+
+
 });
 
 question_eleven.addEventListener('click', function(event) {
-  storeAnswer(11, event);
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+         storeAnswer(11, event);
+
+     flag=true;
+
+   }else{ flag=false;
+  }
+
+
+
 });
 
 question_twelve.addEventListener('click', function(event) {
-  storeAnswer(12, event);
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+        storeAnswer(12, event);
+
+     flag=true;
+
+   }else{ flag=false;
+  }
+
+
+
+
 });
 
 question_thirteen.addEventListener('click', function(event) {
-  storeAnswer(13, event);
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+        storeAnswer(13, event);
+
+     flag=true;
+
+   }else{ flag=false;
+  }
+
+
+
 });
 
 question_fourteen.addEventListener('click', function(event) {
-  storeAnswer(14, event);
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+     storeAnswer(14, event);
+
+     flag=true;
+
+   }else{ flag=false;
+  }
+
+
+
 });
 
 question_fifteen.addEventListener('click', function(event) {
-  storeAnswer(15, event);
+ if(event.target.value =="yes" ||event.target.value =="no"){
+   console.log(event.target.value)
+       storeAnswer(15, event);
+
+     flag=true;
+
+   }else{ flag=false;
+  }
+
+
+
 });
 
 
@@ -180,78 +331,142 @@ function nextQuestion(question_number) {
 
 //add event listeners to each submit button element and call nextQuestion function on click. Also calling function to grow progress bar.
 submit1.addEventListener('click', function() {
-
-  nextQuestion(2);
+if(flag){
+console.log(flag)
+ nextQuestion(2);
   growProgressBar('13.2%');
+  flag=false;
+}
+
+
+
 });
 
 submit2.addEventListener('click', function() {
-  nextQuestion(3);
+
+if(flag){
+ nextQuestion(3);
   growProgressBar('19.8%');
+   flag=false;
+}
+
+
 });
 
 submit3.addEventListener('click', function() {
-  nextQuestion(4);
+if(flag){
+ nextQuestion(4);
   growProgressBar('26.4%');
+  flag=false;
+}
+
+
+
 });
 
 submit4.addEventListener('click', function() {
-  nextQuestion(5);
+
+if(flag){
+ nextQuestion(5);
   growProgressBar('33%');
+  flag=false;
+}
 });
 
 submit5.addEventListener('click', function() {
-  nextQuestion(6);
+if(flag){
+nextQuestion(6);
   growProgressBar('39.6%');
+  flag=false;
+}
 });
 
 submit6.addEventListener('click', function() {
-  nextQuestion(7);
+if(flag){
+nextQuestion(7);
   growProgressBar('46.2%');
+  flag=false;
+}
 });
 
 submit7.addEventListener('click', function() {
-  nextQuestion(8);
+if(flag){
+ nextQuestion(8);
   growProgressBar('52.8%');
+  flag=false;
+}
 });
 
 submit8.addEventListener('click', function() {
-  nextQuestion(9);
+if(flag){
+ nextQuestion(9);
   growProgressBar('59.4%');
+  flag=false;
+}
+
 });
 
 submit9.addEventListener('click', function() {
-  nextQuestion(10);
+if(flag){
+ nextQuestion(10);
   growProgressBar('66%');
-});
+  flag=false;
+}
+ });
 
 submit10.addEventListener('click', function() {
-  nextQuestion(11);
+if(flag){
+ nextQuestion(11);
   growProgressBar('72.6%');
+  flag=false;
+}
 });
 
 submit11.addEventListener('click', function() {
-  nextQuestion(12);
+if(flag){
+ nextQuestion(12);
   growProgressBar('79.2%');
+  flag=false;
+}
+
 });
 
 submit12.addEventListener('click', function() {
-  nextQuestion(13);
+if(flag){
+ nextQuestion(13);
   growProgressBar('85.8%');
+  flag=false;
+}
+
+
 });
 
 submit13.addEventListener('click', function() {
+if(flag){
   nextQuestion(14);
-  growProgressBar('92.4%');
+   growProgressBar('92.4%');
+  flag=false;
+}
+
+
+
 });
 
 submit14.addEventListener('click', function() {
+if(flag){
   nextQuestion(15);
-  growProgressBar('100%');
+   growProgressBar('100%');
+  flag=false;
+}
+
 });
 
 submit15.addEventListener('click', function() {
+
+if(flag){
   nextQuestion(16);
+  flag=false;
+}
 });
 
 
