@@ -2,6 +2,7 @@ package com.example.betterDays.Entities;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 //import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,13 +23,14 @@ public class Patient implements UserDetails{
     private String password;
     private int age;
     private String authority;
-    private String testResult = "null";
+    @OneToMany(mappedBy="doctorWatingEntity")
+    private List<DoctorWaiting> DoctorWaitingList  ;
     @ManyToOne
     private DoctorEntity doctorEntity;
     @OneToOne
     private Event booking;
     private ArrayList<Story> stories;
-
+    private String tester;
 
     public Patient(){}
     public Patient(String firstName, String lastName, String userName, String nickName, String email, String password, int age) {
@@ -41,7 +43,7 @@ public class Patient implements UserDetails{
         this.age = age;
         this.authority="role_patient";
     }
-    public Patient(String firstName, String lastName, String userName, String nickName, String email, String password, int age,String testResult) {
+    public Patient(String firstName, String lastName, String userName, String nickName, String email, String password, int age,String tester) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = userName;
@@ -50,7 +52,7 @@ public class Patient implements UserDetails{
         this.password = password;
         this.age = age;
         this.authority="role_patient";
-        this.testResult=testResult;
+        this.tester=tester;
         this.id=id;
     }
 
@@ -136,12 +138,7 @@ public class Patient implements UserDetails{
     public void setAge(int age) {
         this.age = age;
     }
-    public String getTestResult() {
-        return testResult;
-    }
-    public void setTestResult(String testResults) {
-        this.testResult = testResult;
-    }
+
     public DoctorEntity getDoctorEntity() {
         return doctorEntity;
     }
@@ -167,5 +164,30 @@ public class Patient implements UserDetails{
     }
     public void addStory(Story story){
             this.stories.add(story);
+    }
+
+    public String getTester() {
+        return tester;
+    }
+
+    public void setTester(String tester) {
+        this.tester = tester;
+    }
+
+
+
+    public void addWattingDoctor(DoctorWaiting doctorwaiting){
+        if (this.DoctorWaitingList.contains(doctorwaiting))
+            System.out.println("already a patient");
+        else
+            this.DoctorWaitingList.add(doctorwaiting);
+    }
+
+    public List<DoctorWaiting> getDoctorWaitingList() {
+        return DoctorWaitingList;
+    }
+
+    public void setDoctorWaitingList(List<DoctorWaiting> doctorWaitingList) {
+        DoctorWaitingList = doctorWaitingList;
     }
 }

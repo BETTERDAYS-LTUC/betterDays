@@ -45,7 +45,7 @@ public class GeneralController {
                                    @RequestParam String email,
                                    @RequestParam String password,
                                    @RequestParam int age){
-        Patient patient = new Patient(firstName, lastName, userName, nickName, email, encoder.encode(password),age);
+        Patient patient = new Patient(firstName, lastName, userName, nickName, email, encoder.encode(password),age,"null");
         patientRepository.save(patient);
 // Authentication authentication = new UsernamePasswordAuthenticationToken(patient, null, new ArrayList<>());
 // SecurityContextHolder.getContext().setAuthentication(authentication);

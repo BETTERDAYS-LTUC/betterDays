@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signup*").permitAll()
                 .antMatchers("/style.css").permitAll()
 
+                .antMatchers("/alldoctorwait*").hasAuthority("role_admin")
 
 //                .antMatchers("/doctor*").hasAuthority("role_doctor")
 //                .antMatchers("/doctor*").permitAll()
