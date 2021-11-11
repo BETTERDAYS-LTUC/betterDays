@@ -25,7 +25,7 @@ public class DoctorController {
 //}
     @GetMapping("/doctor")
     public String getDoctorAcc(){
-        DoctorEntity doctor=new DoctorEntity("doctor111", encoder.encode("0"));
+        DoctorEntity doctor=new DoctorEntity("Kim","Adams","I completed my bachelor's degree in 2011 from New York University, where I majored in Art History and minored in Psychology. I completed my masters degree in 2013; receiving a MA in Creative Arts Therapy from Hofstra University.","kimadams12","kim@gmail.com", encoder.encode("000"),33);
         doctorRepository.save(doctor);
         return "index";
     }

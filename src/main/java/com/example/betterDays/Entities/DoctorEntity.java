@@ -77,6 +77,17 @@ public class DoctorEntity implements UserDetails {
         this.age = 0;
         this.bio="yourbio";
     }
+    public DoctorEntity(String firstName , String lastName, String bio, String username,String email, String password,int age) {
+        this.username = username;
+        this.password = password;
+        this.authority= "role_doctor";
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.bio=bio;
+    }
+
 
     // public String getUsername() {
 // return username;
