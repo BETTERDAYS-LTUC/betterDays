@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="shortcut icon" href="https://toppng.com/uploads/preview/heart-blue-11550711289cfz19utgpc.png" type="image/x-icon">
+
+    <title>Test</title>
+</head>
+<body>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Addiction Survey</title>
+    <meta name="description" content="Survey">
+    <meta name="author" content="Luke Lehane">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/test.css" rel="stylesheet">
+
+</head>
+
+<body>
+<nav th:replace="fag/nav"></nav>
+
+
+<div class="container">
+    <div class="row">
+        <div class="two-thirds column">
+            <h2>Addiction Survey</h2>
+
+            <div id="progress_bar"></div>
+            <form class="questions_box" action="/testResult" method="post">
+
+                <div id="question-1">
+                    <h2>Question 1</h2>
+                    <h3>Do you lose time from work due to drinking or drug use?</h3>
+                    <input id="question-1-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-1-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit1" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-2">
+                    <h2>Question 2</h2>
+                    <h3>Is drinking or drug use making your home life unhappy?</h3>
+                    <input id="question-2-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-2-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit2" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-3">
+                    <h2>Question 3</h2>
+                    <h3>Do you drink or use drugs because you are shy with other people?</h3>
+                    <input id="question-3-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-3-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit3" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-4">
+                    <h2>Question 4</h2>
+                    <h3>Is drinking or drug use affecting your reputation?</h3>
+                    <input id="question-4-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-4-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit4" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-5">
+                    <h2>Question 5</h2>
+                    <h3>Have you ever felt remorse after drinking or drug use?</h3>
+                    <input id="question-5-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-5-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit5" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-6">
+                    <h2>Question 6</h2>
+                    <h3>Have you gotten into financial difficulties as a result of your drinking or drug use?</h3>
+                    <input id="question-6-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-6-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit6" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-7">
+                    <h2>Question 7</h2>
+                    <h3>Do you turn to lower companions and an inferior environment when drinking or using drugs?</h3>
+                    <input id="question-7-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-7-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit7" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-8">
+                    <h2>Question 8</h2>
+                    <h3> Does your drinking or drug use make you careless of your family’s welfare?</h3>
+                    <input id="question-8-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-8-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit8" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-9">
+                    <h2>Question 9</h2>
+                    <h3>Has your ambition decreased since drinking or using drugs?</h3>
+                    <input id="question-9-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-9-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit9" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-10">
+                    <h2>Question 10</h2>
+                    <h3> Do you crave a drink or a drug at a definite time daily?</h3>
+                    <input id="question-10-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-10-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit10" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-11">
+                    <h2>Question 11</h2>
+                    <h3> Do you want a drink or drug the next morning?</h3>
+                    <input id="question-11-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-11-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit11" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-12">
+                    <h2>Question 12</h2>
+                    <h3> Does your drinking or drug use cause you to have difficulties in sleeping?</h3>
+                    <input id="question-12-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-12-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit12" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-13">
+                    <h2>Question 13</h2>
+                    <h3> Has your efficiency decreased since drinking or using drugs?</h3>
+                    <input id="question-13-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-13-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit13" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-14">
+                    <h2>Question 14</h2>
+                    <h3> Is your drinking or drug use jeopardizing your job or business?</h3>
+                    <input id="question-14-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-14-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit14" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div id="question-15">
+                    <h2>Question 15</h2>
+                    <h3> Do you drink or use drugs to escape from worries or troubles?</h3>
+                    <input id="question-15-answer-a" type="radio" name="favelang" value="yes"> Yes<br>
+                    <input id="question-15-answer-b" type="radio" name="favelang" value="no"> No<br>
+                    <div id="submit15" class="button">Submit Answer</div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+                <div id="question-16">
+                    <h2>Thanks for answering!</h2>
+                    <h3>Your result: </h3>
+                    <p id=printscoreinfo></p>
+                    <input type="text" id="submit" name="submit" hidden>
+                    <input type="submit" style="border-radius: 5px;
+    border: 5px solid #247CFF;
+    font-size: 15px;
+    background-color: #247CFF;
+    color: white;
+    width: 134px;"  >
+
+                </div>
+
+
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="fag/footer" style="margin-bottom"></footer>
+
+<script src="js/test.js"></script>
+</body>
+</html>

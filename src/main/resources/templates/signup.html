@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>signup</title>
+    <link rel="shortcut icon" href="https://toppng.com/uploads/preview/heart-blue-11550711289cfz19utgpc.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <link href="css/login.css" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+
+    <div class="text">signup</div>
+    <form action="/signup" method="post">
+        <div class="field">
+            <span class="fas fa-user"></span>
+            <input type="text" name="userName" id="userName" placeholder="User Name" required>
+            <!-- <label>First Name</label> -->
+        </div>
+
+        <div class="field">
+            <span class="fas fa-user"></span>
+            <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
+            <!-- <label>First Name</label> -->
+        </div>
+
+        <div class="field">
+            <span class="fas fa-user"></span>
+            <input type="text" name="lastName" id="lastName" placeholder="Last Name"required>
+            <!-- <label>Last Name</label> -->
+        </div>
+        <div class="field">
+            <span class="fas fa-user"></span>
+            <input type="text" name="nickName" id="nickName" placeholder="Nick Name" required>
+            <!-- <label>Nick Name</label> -->
+        </div>
+        <div class="field">
+            <span class="fas fa-user"></span>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <!-- <label>email</label> -->
+        </div>
+
+        <div class="field">
+            <span class="fas fa-user"></span>
+            <input type="number" name="age" id="age" placeholder="Age" required>
+            <!-- <label>First Name</label> -->
+        </div>
+        
+        <div class="field">
+            <span class="fas fa-lock"></span>
+            <input name="password" id="password" placeholder="password"type="password">
+            <!-- <label>Password</label> -->
+
+        </div>
+        <div class="forgot-pass"><a href="/login">Already you have account?</a></div>
+        <button>Sign Up</button>
+
+    </form>
+</div>
+</body>
+</html>

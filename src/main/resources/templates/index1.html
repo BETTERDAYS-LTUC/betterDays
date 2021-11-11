@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Calendar </title>
+    <link rel="shortcut icon" href="https://toppng.com/uploads/preview/heart-blue-11550711289cfz19utgpc.png" type="image/x-icon">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="icons/style.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<div class="header">
+
+</div>
+
+<div class="main" style="display: flex;">
+
+    <div style="margin-right: 10px;">
+        <div id="nav"></div>
+    </div>
+    <div style="flex-grow: 1">
+        <div id="dp"></div>
+    </div>
+</div>
+<a  href="/patientProfile" class="btn btn-primary"  role="button"
+    style="color: #fff;
+background-color: #0d6efd;
+border-color: #0d6efd;
+width: 100%;
+margin-top: 1%;">Proceed</a>
+<!-- DayPilot library -->
+<script src="js/daypilot/daypilot-all.min.js"></script>
+
+<script>
+
+    var dp = new DayPilot.Calendar("dp");
+
+// view
+dp.startDate = DayPilot.Date.today();
+dp.viewType = "Week";
+dp.allDayEventHeight = 25;
+
+dp.eventDeleteHandling = "Update";
+dp.onEventDelete = function (args) {
+    alert("deleting: " + args.e.text());
+};
+
+dp.contextMenu = new DayPilot.Menu({
+    items: [
+        {
+            text: "Show event ID", onclick: function () {
+                alert("Event value: " + this.source.value());
+            }
+        },
+        {
+            text: "Show event text", onclick: function () {
+                alert("Event text: " + this.source.text());
+            }
+        },
+        {
+            text: "Show event start", onclick: function () {
+                alert("Event start: " + this.source.start().toStringSortable());
+            }
+        },
+        {
+            text: "Delete", onclick: function () {
+                dp.events.remove(this.source);
+            }
+        }
+    ]
+});
+
+// event moving
+dp.onEventMoved = function (args) {
+    dp.message("Moved: " + args.e.text());
+};
+
+// event resizing
+dp.onEventResized = function (args) {
+    dp.message("Resized: " + args.e.text());
+};
+
+// event creating
+dp.onTimeRangeSelected = function (args) {
+    var name = prompt("New event name:", "Event");
+    dp.clearSelection();
+    if (!name) return;
+    var e = new DayPilot.Event({
+        start: args.start,
+        end: args.end,
+        text: name
+    });
+    console.log(e.data.end.value)
+    console.log(args.end)
+    console.log(args.start)
+     DayPilot.Http.ajax({
+                url: '/api/events/create',
+                data: e,
+                success: function (ajax) {
+                    var data = ajax.data;
+                   dp.events.add(e);
+                   dp.message("Created");
+                }
+
+            })
+            console.log(e);
+
+};
+
+dp.onTimeRangeRightClick = function (args) {
+    window.console && console.log(args);
+};
+
+dp.onTimeRangeDoubleClicked = function (args) {
+    alert("DoubleClick: start: " + args.start + " end: " + args.end + " resource: " + args.resource);
+};
+
+dp.onEventClick = function (args) {
+    //alert("clicked: " + args.e.id());
+    DayPilot.Modal.alert(args.e.data.text);
+};
+
+dp.showEventStartEnd = false;
+dp.scrollLabelsVisible = true;
+
+dp.contextMenuSelection = new DayPilot.Menu({
+    items: [
+        {
+            'text': 'Create new event (JavaScript)', 'onclick': function () {
+                dp.events.add(new DayPilot.Event({
+                    start: this.source.start,
+                    end: this.source.end,
+                    text: "New event",
+                }));
+            }
+        },
+        {'text': '-'},
+        {
+            'text': 'Show selection details', 'onclick': function () {
+                alert('Start: ' + this.source.start + '\nEnd: ' + this.source.end + '\nResource id: ' + this.source.resource);
+            }
+        },
+        {
+            'text': 'Clean selection', 'onclick': function () {
+                dp.clearSelection();
+            }
+        }]
+});
+
+dp.timeRangeSelectingStartEndEnabled = true;
+
+var first = DayPilot.Date.today().firstDayOfWeek("en-us").addDays(1);
+
+
+
+dp.init();
+
+
+</script>
+</body>
+</html>

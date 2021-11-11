@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link href="css/patientProfile.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav th:replace="fag/nav"></nav>
+<section id="cardid">
+    <div class="card">
+        <img src="https://www.nautec.com/wp-content/uploads/2018/04/placeholder-person.png" alt="">
+        <h2 th:text="${patient.nickName}" ></h2>
+        <div class="cont">
+            <ul>
+                <li>First Name : <span th:text="${patient.firstName }"></span></li>
+                <li>Last Name : <span th:text="${patient.lastName }"></span></li>
+                <li>Email : <span th:text="${patient.email }"></span></li>
+                <li>Age : <span th:text="${patient.age }"></span></li>
+                <li>Test Result : <span th:text="${patient.testResult }"></span></li>
+            </ul>
+            <div>
+                <a  data-bs-target="#offcanvas" class="btn btn-primary" data-bs-toggle="offcanvas" role="button"
+                    aria-controls="offcanvasExample" style="color:White; cursor: pointer;
+
+                border-radius: 5px;
+                border: 5px solid #247CFF;
+                background-color: #247CFF;
+                color: white;
+                width: 134px;">Appointments</a>
+            </div>
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasExample">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasLabel">Appointments</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <span th:text="${patient.booking.text}"></span>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>Dr.</strong><span th:text="${patient.doctorEntity.firstName + ' ' + patient.doctorEntity.lastName}"></span>
+                                    <br/>
+                                    <br/>
+                                    <p>The session starts at :<span th:text="${patient.booking.start}"></span></p>
+                                    <p>The session ends at :<span th:text="${patient.booking.end1}"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Edit profile
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/updateProfile" method="post">
+                        <!--                        <form>-->
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Username</label>
+                            <input  th:value="${patient.userName}" type="text" name="userName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">First Name</label>
+                            <input  th:value="${patient.firstName}" type="text" name="firstName" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input  th:value="${patient.lastName}" type="text" name="lastName" class="form-control" id="lastName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nickName" class="form-label">Nick Name:</label>
+                            <input  th:value="${patient.nickName}" type="text" name="nickName" class="form-control" id="nickName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-mail:</label>
+                            <input  th:value="${patient.email}" type="email" name="email" class="form-control" id="email">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="age" class="form-label">Age:</label>
+                            <input  th:value="${patient.age}" type="number" name="age" class="form-control" id="age">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">password:</label>
+                            <input type="password" name="password" class="form-control" id="password" th:value="${patient.age}" readonly>
+                        </div>
+
+<!--                        <div class="mb-3">-->
+<!--                            <label for="image" class="form-label">image:</label>-->
+<!--                            <input type="file" name="image" class="form-control" id="image" >-->
+<!--                        </div>-->
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<p>
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="    cursor: pointer;
+    margin-left: 45%;
+    border-radius: 5px;
+    border: 5px solid #247CFF;
+    margin-top: 10px;
+    font-size: 15px;
+    background-color: #247CFF;
+    color: white;
+    padding: 6px 24px;
+    width: 134px;
+">
+        Add Story
+    </a>
+
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <form method="post" action="/addstory">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                <input type="text" name="title" class="form-control" id="exampleFormControlInput1" >
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Story</label>
+                <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button  class="btn btn-primary" type="submit">Share</button>
+
+        </form>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<div>
+    <hr>
+</div>
+<footer th:replace="fag/footer"></footer>
+</body>
+</html>
