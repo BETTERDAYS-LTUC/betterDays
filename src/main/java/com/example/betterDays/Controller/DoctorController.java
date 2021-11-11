@@ -33,8 +33,8 @@ public class DoctorController {
 //}
     @GetMapping("/doctor")
     public String getDoctorAcc(){
-        DoctorEntity doctor=new DoctorEntity("doctor111", encoder.encode("0"));
-        doctorRepository.save(doctor);
+//        DoctorEntity doctor=new DoctorEntity("doctor111", encoder.encode("0"));
+//        doctorRepository.save(doctor);
         return "index";
     }
     // @GetMapping("/doctorProfile")
@@ -83,7 +83,7 @@ public class DoctorController {
                                    @RequestParam String email,
                                    @RequestParam String password,
                                    @RequestParam int age){
-        Patient admin=patientRepository.findById(5).get();
+        Patient admin=patientRepository.findById(1).get();
         DoctorWaiting doctorwaiting = new DoctorWaiting(firstName,lastName,bio,userName,email, encoder.encode(password),age);
 
         doctorWaitingRepsitory.save(doctorwaiting);
@@ -101,7 +101,7 @@ public class DoctorController {
     @PostMapping("/choosedoctor/{id}")
     public RedirectView profile(@PathVariable int id, Model m, Principal principal){
         DoctorWaiting doctor  = doctorWaitingRepsitory.findById(id).get();
-        DoctorEntity doctor1=new DoctorEntity(doctor.getUsername(),doctor.getPassword());
+        DoctorEntity doctor1=new DoctorEntity(doctor.getFirstName(),doctor.getLastName(),doctor.getBio(),doctor.getUsername(),doctor.getEmail(),doctor.getPassword(),doctor.getAge());
 //        Patient patient = patientRepository.findByUsername(principal.getName());
 //        patient.setDoctorEntity(doctor);
 //        doctor.addPatient(patient);

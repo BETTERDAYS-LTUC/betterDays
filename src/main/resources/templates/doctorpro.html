@@ -11,61 +11,181 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
+
 <body>
 <nav th:replace="fag/nav"></nav>
-<section id="cardid">
-    <div class="card" >
-        <img src="https://www.nautec.com/wp-content/uploads/2018/04/placeholder-person.png" alt="">
-        <h2 th:text="${patient.username}" ></h2>
-        <div class="cont">
-            <ul>
-                <li>First Name : <span th:text="${patient.firstName }"></span></li>
-                <li>Last Name : <span th:text="${patient.lastName }"></span></li>
-                <li>Email : <span th:text="${patient.email }"></span></li>
-                <li>Age : <span th:text="${patient.age }"></span></li>
-                <li>Bio: <span th:text="${patient.bio }"></span></li>
-                <!-- <li>Test Result : <span th:text="${patient.testResult }"></span></li>-->
-            </ul>
-            <div>
-                <a data-bs-target="#offcanvas" class="btn btn-primary" data-bs-toggle="offcanvas" role="button"
-                   aria-controls="offcanvasExample">Patients</a>
-            </div>
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasExample">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasLabel">Patients</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<section id="cardid" style="margin-top:3%; margin-bottom:5%;">
+    <div class="container emp-profile">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img style="width:162px" src="https://www.nautec.com/wp-content/uploads/2018/04/placeholder-person.png"
+                             alt="" />
+                    </div>
                 </div>
-                <div class="offcanvas-body">
-                    <div class="accordion" id="accordionExample">
-                        <div class="accordion-item" th:each="patient:${patient.patient}">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <span th:text="${patient.firstName + ' ' + patient.lastName}"></span>
-                                </button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <strong >Email: <span th:text="${patient.email}"></span></strong><br/>
-                                    <strong th:text="${patient.firstName} + '\&#39;s' + ' '"></strong>
-                                    <strong >Age: <span th:text="${patient.age}"></span></strong><br/>
-                                    <strong th:text="${patient.booking.text}"></strong><br/>
-                                    <strong>Level of addiction : <span th:text="${patient.tester}"></span></strong>
-                                    <br/>
-                                    <br/>
-                                    <p>The session starts at :<span th:text="${patient.booking.start}"></span></p>
-                                    <p>The session ends at :<span th:text="${patient.booking.end1}"></span></p>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5>
+                            Doctor Name
+                        </h5>
+                        <h6 th:text="${patient.firstName + ' ' + patient.lastName}" >
+                        </h6>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                   aria-controls="home" aria-selected="true">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <!-- <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a> -->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button style="    cursor: pointer;
+                    margin-left: 45%;
+                    border-radius: 5px;
+                    border: 5px solid #247CFF;
+                    margin-top: 10px;
+                    font-size: 15px;
+                    background-color: #247CFF;
+                    color: white;
+                    padding: 6px 24px;
+                    width: 134px;
+                " type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Edit profile
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p th:text="${patient.firstName }"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p th:text="${patient.email }"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Age</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p th:text="${patient.age }" ></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Experience</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Expert</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Hourly Rate</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>10$/hr</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Total Projects</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>230</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>English Level</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Expert</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Availability</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>6 months</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Your Bio</label><br />
+                                    <p>Your detail description</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     <!-- Button trigger modal -->
-    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Edit profile
-    </button>
+    <div>
+        <a data-bs-target="#offcanvas" class="btn btn-primary" data-bs-toggle="offcanvas" role="button"
+           aria-controls="offcanvasExample" style="    cursor: pointer;
+            margin-left: 45%;
+            border-radius: 5px;
+            border: 5px solid #247CFF;
+            margin-top: 10px;
+            font-size: 15px;
+            background-color: #247CFF;
+            color: white;
+            width: 134px;">Appointments</a>
+    </div>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasExample">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasLabel">Patients</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item" th:each="patient:${patient.patient}">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <span th:text="${patient.firstName + ' ' + patient.lastName}"></span>
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong >Email: <span th:text="${patient.email}"></span></strong><br/>
+                            <strong th:text="${patient.firstName} + '\&#39;s' + ' '"></strong>
+                            <strong >Age: <span th:text="${patient.age}"></span></strong><br/>
+                            <strong th:text="${patient.booking.text}"></strong><br/>
+                            <br/>
+                            <br/>
+                            <p>The session starts at :<span th:text="${patient.booking.start}"></span></p>
+                            <p>The session ends at :<span th:text="${patient.booking.end1}"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -75,52 +195,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-<!--                    <form action="updateProfileDoctor" method="post">-->
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-user"></span>-->
-<!--                            <input type="text" name="userName" id="userName"-->
-<!--                                   th:value="${patient.username}">-->
-<!--                            <label>User Name</label>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash;&ndash;&gt;-->
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-user"></span>-->
-<!--                            <input type="text" name="firstName" id="firstName"-->
-<!--                                   th:value="${patient.firstName}">-->
-<!--                            <label>First Name</label>-->
-<!--                        </div>-->
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-user"></span>-->
-<!--                            <input type="text" name="lastName" id="lastName"-->
-<!--                                   th:value="${patient.lastName}">-->
-<!--                            <label>Last Name</label>-->
-<!--                        </div>-->
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-user"></span>-->
-<!--                            <input type="text" name="bio" id="Bio"-->
-<!--                                   th:value="${patient.bio}">-->
-<!--                            <label>Bio </label>-->
-<!--                        </div>-->
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-user"></span>-->
-<!--                            <input type="email" name="email" id="email"-->
-<!--                                   th:value="${patient.email}">-->
-<!--                            <label>email</label>-->
-<!--                        </div>-->
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-user"></span>-->
-<!--                            <input type="number" name="age" id="age"-->
-<!--                                   th:value="${patient.age}">-->
-<!--                            <label>Age</label>-->
-<!--                        </div>-->
-<!--                        <div class="field">-->
-<!--                            <span class="fas fa-lock"></span>-->
-<!--                            <input name="password" id="password" placeholder="password"type="password"-->
-<!--                                   th:value="${patient.password}">-->
-<!--                            <label>Password</label>-->
-<!--                        </div>-->
-<!--                        <button type="submit">Update</button>-->
-<!--                    </form>-->
                     <form action="updateProfileDoctor" method="post">
                         <!--                        <form>-->
                         <div class="mb-3">
@@ -143,30 +217,25 @@
                             <label for="email" class="form-label">E-mail:</label>
                             <input  th:value="${patient.email}" type="email" name="email" class="form-control" id="email">
                         </div>
-
                         <div class="mb-3">
                             <label for="age" class="form-label">Age:</label>
                             <input  th:value="${patient.age}" type="number" name="age" class="form-control" id="age">
                         </div>
-
                         <div class="mb-3">
                             <label for="password" class="form-label">password:</label>
                             <input type="password" name="password" class="form-control" id="password" th:value="${patient.age}" readonly>
                         </div>
-
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-
 </section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<div>
-    <hr>
-</div>
 <footer th:replace="fag/footer"></footer>
 </body>
 </html>

@@ -112,39 +112,40 @@ public class PatientController {
     public String getTest() {
         return "test";
     }
-//    @GetMapping("/patientProfile")
-//    public String getPatientProfile(Principal principal, Model model) {
-//        Patient patient = patientRepository.findByUsername(principal.getName());
-//        DoctorEntity doctor = doctorRepository.findByUsername(principal.getName());
-//        if(patient!=null) {
-//            model.addAttribute("patient", patient);
-//            return "profile";
-//        }else if (doctor!=null){
-//            model.addAttribute("patient", doctor);
-//            return "doctorpro";
-//        }else {
-//            return "index";
-//        }
-//    }
-@GetMapping("/patientProfile")
-public String getPatientProfile(Principal principal, Model model) {
-    Patient patient = patientRepository.findByUsername(principal.getName());
-    DoctorEntity doctor = doctorRepository.findByUsername(principal.getName());
+    @GetMapping("/patientProfile")
+    public String getPatientProfile(Principal principal, Model model) {
+        Patient patient = patientRepository.findByUsername(principal.getName());
+        DoctorEntity doctor = doctorRepository.findByUsername(principal.getName());
+        if(patient!=null && (patient.getAuthority().contains("role_patient"))){
+            model.addAttribute("patient", patient);
+            return "profile";
+        }else if (doctor!=null){
+            model.addAttribute("patient", doctor);
+            return "doctorpro";
+        }else {
+            model.addAttribute("patient", patient);
 
-    System.out.println(patient.getAuthority().contains("role_patient"));
-    if(patient!=null && patient.getAuthority().contains("role_patient")) {
-        model.addAttribute("patient", patient);
-        return "profile";
-    }else if (doctor!=null ) {
-        model.addAttribute("patient", doctor);
-        return "doctorpro";
-    }else if(patient!=null && patient.getAuthority().contains("role_admin")){
-        model.addAttribute("patient", patient);
-        return "adnimpro";
-    }else {
-        return "index";
+            return "adnimpro";
+        }
     }
-}
+//@GetMapping("/patientProfile")
+//public String getPatientProfile(Principal principal, Model model) {
+//    Patient patient = patientRepository.findByUsername(principal.getName());
+////    DoctorEntity doctor = doctorRepository.findByUsername(principal.getName());
+//
+//    System.out.println(patient.getAuthority().contains("role_patient"));
+//    if(patient!=null && patient.getAuthority().contains("role_patient")) {
+//        model.addAttribute("patient", patient);
+//        return "profile";
+//
+//    }else if(patient!=null && patient.getAuthority().contains("role_admin")){
+//        model.addAttribute("patient", patient);
+//        return "adnimpro";
+//    }else {
+////        model.addAttribute("patient", doctor);
+//        return "doctorpro";
+//    }
+//}
     @PostMapping("/updateProfile")
     public String updateProfile(@RequestParam String firstName,
                                 @RequestParam String lastName,

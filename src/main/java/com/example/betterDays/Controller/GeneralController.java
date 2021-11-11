@@ -29,7 +29,7 @@ public class GeneralController {
     StoryRepo storyRepo;
     @GetMapping("/")
     public String getHome(){
-// DoctorEntity doctor=new DoctorEntity("doctor1", encoder.encode("0"));
+// DoctorEntity doctor=new DoctorEntity("doctor200", encoder.encode("0"));
 // doctorRepository.save(doctor);
         return "index";
     }

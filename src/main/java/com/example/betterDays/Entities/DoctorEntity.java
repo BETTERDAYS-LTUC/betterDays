@@ -8,7 +8,7 @@ import java.sql.Date;
 import java.util.*;
 @Entity
 public class DoctorEntity implements UserDetails {
-    // @Column(unique = true)
+//     @Column(unique = true)
     private String username;
     private String password;
     // @Column(unique = true)
@@ -67,17 +67,26 @@ public class DoctorEntity implements UserDetails {
 // @OneToMany(mappedBy="applicationUser")
 // private List<Post> posts ;
 //------------------------------getter and setter------------------------------------------------
-    public DoctorEntity(String username, String password) {
+//    public DoctorEntity(String username, String password) {
+//        this.username = username;
+//        this.password = password;
+//        this.authority= "role_doctor";
+//        this.email = "email@gmail.com";
+//        this.firstName = "firstName";
+//        this.lastName = "lastName";
+//        this.age = 0;
+//        this.bio="yourbio";
+//    }
+    public DoctorEntity(String firstName , String lastName, String bio, String username,String email, String password,int age) {
         this.username = username;
         this.password = password;
         this.authority= "role_doctor";
-        this.email = "email@gmail.com";
-        this.firstName = "firstName";
-        this.lastName = "lastName";
-        this.age = 0;
-        this.bio="yourbio";
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.bio=bio;
     }
-
     // public String getUsername() {
 // return username;
 // }
